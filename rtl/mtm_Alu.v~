@@ -41,7 +41,6 @@ module mtm_Alu_deserializer(
 	input wire sin,		//serial input
 	output reg [7:0] pout	//parallel output
 );
-	//todo liczenie, czy przyszło 8 ramek danych (flaga data error)
 	
 	reg [7:0] pout_nxt;
 
@@ -72,6 +71,7 @@ module mtm_Alu_core(
 			FLAGS 	<= 0;
 			CARRY 	<= 0;
 		end
+
 		else begin
 			C 	<= C_nxt;
 			CTL 	<= CTL_nxt;
@@ -103,6 +103,7 @@ module mtm_Alu_core(
 		if(ERR_FLAGS == 0) CTL_nxt = {1'b0, FLAGS, CRC};
 		else CTL_nxt = {1'b1, ERR_FLAGS, `PARITY);
 		//todo liczenie CRC (flaga CRC error)
+		//todo liczenie, czy przyszło 8 ramek danych (flaga data error)
 	end
 endmodule
 
