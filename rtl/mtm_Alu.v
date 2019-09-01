@@ -15,6 +15,7 @@
  *
  *******************************************************************************/
 
+//TE SA DLA ALU_CORE
 //OPERATIONS
 `define AND		3'b000
 `define OR		3'b001
@@ -35,6 +36,13 @@
 //OTHERS
 `define PARITY		1'b0
 
+//A TE SA DLA DESERIALIZERA
+//DEMUX STATES
+`define IDLE 	2'b00
+`define START	2'b01
+`define READ	2'b10
+`define STOP	2'b11
+
 module mtm_Alu_deserializer(
 	input wire clk,
 	input wire rst,	
@@ -45,7 +53,54 @@ module mtm_Alu_deserializer(
 	
 	reg [7:0] pout_nxt;
 
+	reg [3:0] bit_counter;
+	reg [3:0] bit_counter_nxt;
+	
+	reg [3:0] packet_counter;
+	reg [3:0] packet_counter_nxt;
 
+	reg [2:0] demux_state;
+	reg [2:0] demux_state_nxt;
+
+
+	always @(posedge clk or posedge rst) begin
+		if(rst) begin
+			pout	<= 0;
+			demux_state <= 0;
+		end
+		else begin
+			pout <= pout_nxt
+			demux_state <= demux_state_nxt;
+		end
+	end
+
+	always @* begin
+		case(demux_state)
+		'IDLE: begin
+			pout_nxt = pout;
+			bit_counter_nxt = 0;
+			packet_counter_nxt = packet_counter;
+			demux_state = (sin == 0) ? `START : `IDLE;
+		end
+
+		'START: begin
+			pout_nxt = pout;
+			bit_counter_nxt = 0;
+			packet_counter_nxt = packet_counter;
+			demux_state = `READ;
+		end
+
+		'READ: begin
+			pout_nxt[bit_counter] = sin;
+			bit_counter_nxt += 1;
+			packet_counter_nxt = packet_counter;
+			demux_state = (bit_counter == 8) ? `STOP : `READ;
+		end
+
+		'STOP: begin
+		end			
+		endcase
+	end
 endmodule
 
 
@@ -78,16 +133,22 @@ module mtm_Alu_core(
 		end
 	end
 
-	always @(*) begin
-		case(OP)
-		`AND:
+	always @* begin
+		case(OP) 
+		`AND: begin
 			C_nxt = A & B;
-		`OR:
+		end
+
+		`OR: begin
 			C_nxt = A | B;
-		`ADD:
+		end
+
+		`ADD: begin
 			assign {COUT, C_nxt} = {1'b0, A} + {1'b0, B}
 			if(COUT != 1'b0) FLAGS |= `OVERFLOW;
-		`SUB:
+		end	
+	
+		`SUB: begin
 			if(B > A) begin
 				C_nxt = B - A
 				FLAGS |= `NEGATIVE;
@@ -95,8 +156,11 @@ module mtm_Alu_core(
 			else begin
 				C_nxt = A - B;
 			end
-		default:
+		end
+
+		default: begin
 			ERR_FLAGS |= `ERR_OP;
+		end		
 		endcase
 
 		if(C_nxt == 0) FLAGS |= `ZERO;
