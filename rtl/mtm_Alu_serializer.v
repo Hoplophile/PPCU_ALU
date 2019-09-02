@@ -1,7 +1,7 @@
 /******************************************************************************
  * (C) Copyright 2019 AGH UST All Rights Reserved
  *
- * MODULE:    mtm_Alu
+ * MODULE:    mtm_Alu_serializer
  * PROJECT:   PPCU_VLSI
  * AUTHORS:
  * DATE:
@@ -16,22 +16,8 @@
  *******************************************************************************/
 
 
-module mtm_Alu (
-    input  wire clk,   // posedge active clock
-    input  wire rst_n, // synchronous reset active low
-    input  wire sin,   // serial data input
-    output wire sout   // serial data output
+module mtm_Alu_serializer(
+	//pewnie jakieś wejścia i wyjścia
 );
-
-
-mtm_Alu_deserializer u_mtm_Alu_deserializer(
-);
-
-mtm_Alu_core u_mtm_Alu_core(
-);
-
-mtm_Alu_serializer u_mtm_Alu_serializer(
-);
-
 
 endmodule
