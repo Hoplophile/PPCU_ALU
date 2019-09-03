@@ -1,9 +1,9 @@
 /******************************************************************************
  * (C) Copyright 2019 AGH UST All Rights Reserved
  *
- * MODULE:    mtm_Alu tb
- * PROJECT:   PPCU_VLSI
- * AUTHORS:
+ * MODULE:		mtm_Alu tb
+ * PROJECT:		PPCU_VLSI
+ * AUTHORS:		P. Ziebinski, S. Janik
  * DATE:
  * ------------------------------------------------------------------------------
  * This module (TB) provides test patterns for the ALU, reads data from the ALU and 
@@ -29,7 +29,21 @@ module mtm_Alu_tb (
     output reg clk,
     output reg rst_n,
     output reg sin,
-    output reg sout
-) ;
+    input reg sout
+);
 
+	task send_byte;
+	
+	endtask
+	
+	
+	task send_calculation_data;
+	
+	endtask
+	
+	
+	task compare;
+	
+	endtask
+	
 endmodule

@@ -1,8 +1,8 @@
 /******************************************************************************
  * (C) Copyright 2019 AGH UST All Rights Reserved
  *
- * MODULE:    mtm_Alu_deserializer
- * PROJECT:   PPCU_VLSI
+ * MODULE:		mtm_Alu_deserializer
+ * PROJECT:		PPCU_VLSI
  * AUTHORS:		P. Ziebinski
  * DATE:
  * ------------------------------------------------------------------------------
@@ -25,10 +25,11 @@
 module mtm_Alu_deserializer(
 	input wire clk,
 	input wire rst,	
-	input wire sin,		//serial input
-	output reg [31:0] Aout	//A output
-	output reg [31:0] Bout	//B output
-	output reg [2:0] OPout	//CTL output
+	input wire sin,				//serial input
+	output reg [31:0] Aout,		//A output
+	output reg [31:0] Bout,		//B output
+	output reg [2:0] OPout,		//CTL output
+	output reg [5:0] ERR_FLAGS	//ERROR FLAGS
 );
 	
 	reg [31:0] Aout_nxt;
@@ -39,13 +40,13 @@ module mtm_Alu_deserializer(
 	reg [31:0] B;
 	reg [31:0] B_nxt;
 	
-	reg [2:0] CRC;
+	reg [3:0] CRC;
+	reg [2:0] OP;
 	
 	reg [2:0] OPout_nxt;
-	reg [2:0] CTL;
-	reg [2:0] CTL_nxt;
+	reg [7:0] CTL;
+	reg [7:0] CTL_nxt;
 	
-	reg [5:0] ERR_FLAGS;
 	reg [5:0] ERR_FLAGS_nxt;
 
 	reg [3:0] bit_counter;
@@ -121,13 +122,13 @@ module mtm_Alu_deserializer(
 			
 			//packet DATA not starting with 0
 			if(packet_counter <= 7 && bit_counter == 0 && sin == 1) begin
-				ERR_FLAGS_nxt |= `ERR_DATA;
+				ERR_FLAGS_nxt = ERR_FLAGS | `ERR_DATA;
 				demux_state_nxt = `ERROR;
 			end
 			
 			//packet CTL not starting with 1
 			else if(packet_counter == 8 && bit_counter == 0 && sin == 0) begin
-				ERR_FLAGS_nxt |= `ERR_DATA;
+				ERR_FLAGS_nxt = ERR_FLAGS | `ERR_DATA;
 				demux_state_nxt = `ERROR;
 			end
 			
@@ -176,7 +177,7 @@ module mtm_Alu_deserializer(
 			
 				//stop bit is not 1
 				if(sin == 0) begin
-					ERR_FLAGS_nxt |= `ERR_DATA;
+					ERR_FLAGS_nxt = ERR_FLAGS | `ERR_DATA;
 					demux_state_nxt = `ERROR;
 				end
 				
@@ -204,9 +205,9 @@ module mtm_Alu_deserializer(
 			B_nxt = 0;
 			CTL_nxt = 0;
 			packet_counter_nxt = 0;
-			bit_counter_nxt = 0
+			bit_counter_nxt = 0;
 			OP = CTL[6:4];
-			CRC = nextCRC4_D68({B, A, 1'b1, OP});
+			CRC = nextCRC4_D68({B, A, 1'b1, OP}, 4'b0000);
 			if(CRC == CTL[3:0]) begin
 				Aout_nxt = A;
 				Bout_nxt = B;
@@ -215,7 +216,7 @@ module mtm_Alu_deserializer(
 				ERR_FLAGS_nxt = ERR_FLAGS;
 			end
 			else begin
-				ERR_FLAGS_nxt |= `ERR_CRC;
+				ERR_FLAGS_nxt = ERR_FLAGS | `ERR_CRC;
 				demux_state_nxt = `ERROR;
 			end
 		end	
@@ -229,9 +230,6 @@ module mtm_Alu_deserializer(
 	
 	
 	function [3:0] nextCRC4_D68;
-	// polynomial: x^4 + x^1 + 1
-	// data width: 68
-	// convention: the first serial bit is D[67]
 
 		input [67:0] Data;
 		input [3:0] crc;
