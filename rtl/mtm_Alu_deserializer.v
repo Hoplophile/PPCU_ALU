@@ -30,16 +30,18 @@ module mtm_Alu_deserializer(
 	output reg [31:0] Bout	//B output
 	output reg [2:0] OPout	//CTL output
 );
-	//todo liczenie, czy przysz\u0142o 8 ramek danych (flaga data error)
 	
+	reg [31:0] Aout_nxt;
 	reg [31:0] A;
 	reg [31:0] A_nxt;
+	
+	reg [31:0] Bout_nxt;
 	reg [31:0] B;
 	reg [31:0] B_nxt;
-	reg [31:0] OP;
-	reg [31:0] OP_nxt;
+	
 	reg [2:0] CRC;
-	reg [2:0] CRC_nxt;
+	
+	reg [2:0] OPout_nxt;
 	reg [2:0] CTL;
 	reg [2:0] CTL_nxt;
 	
@@ -55,97 +57,170 @@ module mtm_Alu_deserializer(
 	reg [2:0] demux_state;
 	reg [2:0] demux_state_nxt;
 
-	reg [98:0] full_msg;
-	reg [98:0] full_msg_nxt;
-
-
+	
 	always @(posedge clk or posedge rst) begin
 		if(!rst) begin
-			Aout	<= 1;
-			demux_state <= `IDLE;
-			full_msg <= 0;
+			demux_state 	<= `IDLE;
+			A				<= 0;
+			B				<= 0;
+			CTL				<= 0;
+			bit_counter		<= 0;
+			packet_counter	<= 0;
+			ERR_FLAGS		<= 0;
+			Aout			<= 32'hFFFFFFFF;
+			Bout			<= 32'hFFFFFFFF;
+			OPout			<= 3'b111;
 		end
 		else begin
-			Aout <= Aout_nxt
-			demux_state <= demux_state_nxt;
-			full_msg <= full_msg_nxt;
+			demux_state 	<= demux_state_nxt;
+			A				<= A_nxt;
+			B				<= B_nxt;
+			CTL				<= CTL_nxt;
+			bit_counter		<= bit_counter_nxt;
+			packet_counter	<= packet_counter_nxt;
+			ERR_FLAGS		<= ERR_FLAGS_nxt;
+			Aout			<= Aout_nxt;
+			Bout			<= Bout_nxt;
+			OPout			<= OPout_nxt;
 		end
 	end
 
+	
 	always @* begin
 		case(demux_state)
 		`IDLE: begin
 			bit_counter_nxt = 0;
 			packet_counter_nxt = packet_counter;
+			ERR_FLAGS_nxt = ERR_FLAGS;
+			Aout_nxt = Aout;
+			Bout_nxt = Bout;
+			OPout_nxt = OPout;
+			A_nxt = A;
+			B_nxt = B;
+			CTL_nxt = CTL;
+			
+			//scan for incoming packet 
 			if(sin == 0) begin
-				demux_state = `START;
-				full_msg_nxt = {full_msg, sin}
+				demux_state_nxt = `START;
 			end
+			
 			else begin
-				demux_state = `IDLE;
+				demux_state_nxt = `IDLE;
 			end
 		end
 		
+		
 		`START: begin
-			full_msg_nxt = {full_msg, sin};
+			Aout_nxt = Aout;
+			Bout_nxt = Bout;
+			OPout_nxt = OPout;
+			A_nxt = A;
+			B_nxt = B;
+			CTL_nxt = CTL;
+			packet_counter_nxt = packet_counter;
+			
+			//packet DATA not starting with 0
 			if(packet_counter <= 7 && bit_counter == 0 && sin == 1) begin
 				ERR_FLAGS_nxt |= `ERR_DATA;
 				demux_state_nxt = `ERROR;
 			end
+			
+			//packet CTL not starting with 1
 			else if(packet_counter == 8 && bit_counter == 0 && sin == 0) begin
 				ERR_FLAGS_nxt |= `ERR_DATA;
 				demux_state_nxt = `ERROR;
 			end
+			
+			//packet starting correctly - read payload
 			else begin
 				bit_counter_nxt = bit_counter + 1;
 				demux_state_nxt = `READ;
+				ERR_FLAGS_nxt = ERR_FLAGS;
 			end
 		end
 
+		
 		`READ: begin
-			full_msg_nxt = {full_msg, sin};
+			Aout_nxt = Aout;
+			Bout_nxt = Bout;
+			OPout_nxt = OPout;
+			
+			//payload bits
 			if(bit_counter <= 8) begin
+				bit_counter_nxt = bit_counter + 1;
+				packet_counter_nxt = packet_counter;
+				demux_state_nxt = `READ;
+				ERR_FLAGS_nxt = ERR_FLAGS;
+				
 				if(packet_counter <= 3) begin	//HERE COMES THE A
 					A_nxt = {A, sin};
+					B_nxt = B;
+					CTL_nxt = CTL;
 				end
-				else if(packet_counter > 3 && packet_counter <=7) begin //HERE COMES THE B
+				
+				else if(packet_counter > 3 && packet_counter <= 7) begin //HERE COMES THE B
 					B_nxt = {B, sin};
+					A_nxt = A;
+					CTL_nxt = CTL;
 				end
+				
 				else if(packet_counter == 8) begin	//AND HERE'S THE CTL
 					CTL_nxt = {CTL, sin};
+					A_nxt = A;
+					B_nxt = B;
 				end
-				else begin
-					//TODO ERROR?
-				end
-				bit_counter_nxt = bit_counter + 1;
-				demux_state = `READ;
 			end
+			
+			//stop bit
 			else if(bit_counter == 9) begin
+			
+				//stop bit is not 1
 				if(sin == 0) begin
 					ERR_FLAGS_nxt |= `ERR_DATA;
 					demux_state_nxt = `ERROR;
 				end
+				
+				//last packet received, finish reception
 				else if(packet_counter == 8) begin
-					demux_state = `STOP;
+					demux_state_nxt = `STOP;
+					packet_counter_nxt = packet_counter;
+					ERR_FLAGS_nxt = ERR_FLAGS;
+					bit_counter_nxt = 0;
 				end
+				
+				//end of packet, wait for next one
 				else begin
 					packet_counter_nxt = packet_counter + 1;
 					bit_counter_nxt = 0;
-					demux_state = `IDLE;
+					demux_state_nxt = `IDLE;
+					ERR_FLAGS_nxt = ERR_FLAGS;
 				end
 			end
 		end
 
+		
 		`STOP: begin
+			A_nxt = 0;
+			B_nxt = 0;
+			CTL_nxt = 0;
+			packet_counter_nxt = 0;
+			bit_counter_nxt = 0
 			OP = CTL[6:4];
 			CRC = nextCRC4_D68({B, A, 1'b1, OP});
 			if(CRC == CTL[3:0]) begin
-				Aout = A;
-				Bout = B;
-				OPout = OP;
-				state = `IDLE;
+				Aout_nxt = A;
+				Bout_nxt = B;
+				OPout_nxt = OP;
+				demux_state_nxt = `IDLE;
+				ERR_FLAGS_nxt = ERR_FLAGS;
+			end
+			else begin
+				ERR_FLAGS_nxt |= `ERR_CRC;
+				demux_state_nxt = `ERROR;
 			end
 		end	
+		
+		
 		`ERROR: begin
 			//todo nie wiem jak obslugujemy wyjatki
 		end
