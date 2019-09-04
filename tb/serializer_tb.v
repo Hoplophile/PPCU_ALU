@@ -1,22 +1,4 @@
-/******************************************************************************
- * (C) Copyright 2019 AGH UST All Rights Reserved
- *
- * MODULE:    mtm_Alu_serializer
- * PROJECT:   PPCU_VLSI
- * AUTHORS:
- * DATE:
- * ------------------------------------------------------------------------------
- * The ALU should operate as described in the mtmAlu_test_top module.
- * It should consist of three modules connected together:
- *   mtm_Alu_deserializer
- *   mtm_Alu_core
- *   mtm_Alu_serializer
- * The ALU should use posedge active clock and synchronous reset active LOW.
- *
- *******************************************************************************/
-
-
-module mtm_Alu_serializer
+module mtm_Alu_serializer1
 (
 	input wire clk, reset,
 	input wire [31:0] Cin,
@@ -65,7 +47,7 @@ module mtm_Alu_serializer
 		//next_state = state;
 		case (state)
 			IDLE: begin
-				if( (CTLin[7] == 0) ||  CTLin[7:0] == 8'b10010011 || CTLin[7:0] == 8'b11001001 || CTLin[7:0] == 8'b10100101) begin
+				if( (CTLin[7] == 0) || CTLin[7:0] == 8'b11001001 || CTLin[7:0] == 8'b10010011 || CTLin[7:0] == 8'b10100101) begin
 					next_bit_counter = 0;
 					next_byte_counter = 0;
 					C = Cin;
@@ -80,7 +62,7 @@ module mtm_Alu_serializer
 				next_state = SET_PACKET_TYPE;
 			end
 			SET_PACKET_TYPE: begin
-				if (CTL[7:0] == 8'b10010011 || CTL[7:0] == 8'b11001001 || CTL[7:0] == 8'b10100101) begin
+				if (CTL[7:0] == 8'b11001001 || CTL[7:0] == 8'b10010011 || CTL[7:0] == 8'b10100101) begin
 
 					sout = 1;
 					next_state = TRANSMIT_ERROR;
@@ -151,5 +133,52 @@ module mtm_Alu_serializer
 		
 		endcase
 	end
+
+	
+	
+endmodule
+
+`timescale  1ns/1ns
+
+module serializer_tb();
+
+    reg clk, reset;
+    reg [31:0] Cin;
+    reg [7:0] CTLin;
+    wire sout;
+
+
+    mtm_Alu_serializer serializer (.clk(clk), .reset(reset), .Cin(Cin), 
+                                    .CTLin(CTLin), .sout(sout));
+
+   initial
+        begin: CLOCK_GENERATOR
+	clk=0;
+	forever
+	begin
+	#5 clk = ~ clk;
+	end
+	
+ end
+
+    initial begin
+        reset = 1;
+        #400
+        reset = 0;
+        #400
+        Cin = 32'b11110011001000101010110010101010; 
+		CTLin = 8'b00101010;
+		#50
+		Cin = 0; CTLin = 0;
+		#1200
+		reset = 1;
+		#200
+		reset = 0;
+        #400
+        Cin = 0; CTLin = 8'b01001001;
+       
+
+
+    end
 
 endmodule
