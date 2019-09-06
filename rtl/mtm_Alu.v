@@ -50,15 +50,14 @@ mtm_Alu_core u_mtm_Alu_core(
   .frame(packet),
   .input_ready(data_valid),
   .ALU_out(ALU_out),
-  .data_ready(data_ready),
-  .CTL_out(CTL_out)
+  .data_ready(data_ready)
 );
 
 mtm_Alu_serializer u_mtm_Alu_serializer(
   .clk(clk),
-  .reset(rst_n),
-  .Cin(C),
-  .CTLin(CTL_out),
+  .rst(rst_n),
+  .aluin(ALU_out),
+  .dataready(data_ready),
   .sout(sout)
 );
 

@@ -1,156 +1,115 @@
-/******************************************************************************
- * (C) Copyright 2019 AGH UST All Rights Reserved
- *
- * MODULE:    mtm_Alu_serializer
- * PROJECT:   PPCU_VLSI
- * AUTHORS:
- * DATE:
- * ------------------------------------------------------------------------------
- * The ALU should operate as described in the mtmAlu_test_top module.
- * It should consist of three modules connected together:
- *   mtm_Alu_deserializer
- *   mtm_Alu_core
- *   mtm_Alu_serializer
- * The ALU should use posedge active clock and synchronous reset active LOW.
- *
- *******************************************************************************/
 `timescale 1ns/1ps
 
 
-module mtm_Alu_serializer
-(
-	input wire clk, reset,
-	input wire [31:0] Cin,
-	input wire [7:0] CTLin,
+module mtm_Alu_serializer(
+	input wire clk,
+	input wire rst,	
+	input wire [54:0] aluin,
+	input wire dataready,				
 	output reg sout
+
 );
 	
-	reg	[2:0] state, next_state;
-	reg [2:0] bit_counter, next_bit_counter;
-  	reg [3:0] byte_counter, next_byte_counter;
-	reg [31:0] C;
-	reg [7:0] CTL;
+    reg [1:0] state, next_state;
+	reg [54:0] buffer, buffer_next;
+	reg[5:0] bit_counter, bit_counter_next;
+	reg sout_next;
+   
 	
-	parameter IDLE = 3'b000, SET_START_BIT = 3'b001, SET_PACKET_TYPE = 3'b010, TRANSMIT_DATA = 3'b011,
-		TRANSMIT_COMMAND = 3'b100, TRANSMIT_ERROR = 3'b101, GET_NEXT_BYTE = 3'b110, SET_STOP_BIT = 3'b111;
-	
-	initial begin
-		state = IDLE;
-		next_state = IDLE;
-		bit_counter = 0; 
-		next_bit_counter = 0;
-		byte_counter = 0; 
-		next_byte_counter = 0;
-	end
+	parameter IDLE = 2'b00, SET_TYPE = 2'b01, FRAME = 2'b10;
+  
+    always @ (posedge clk) begin
+		if (!rst) begin
 
-	always @ (posedge clk) begin
-		if (!reset) begin
 			state <= IDLE;
-			bit_counter <= 0;
-			next_bit_counter <= 0;
-      		byte_counter <= 0;
-			next_byte_counter <= 0;
-			sout <= 1;
-			C <= 0;
-			CTL <= 0;
-		end
-		else begin 
-			bit_counter <= next_bit_counter;
-			byte_counter <= next_byte_counter;
-			state <= next_state;
-		end
-		
+            next_state <= IDLE;
+
+            			
+        end	else begin
+
+            state <= next_state;   
+			buffer <= buffer_next;        
+			sout <= sout_next;  
+			bit_counter <= bit_counter_next;
+
+        end			
 	end
 
+    always @* begin
+        
+		buffer_next = buffer;
+		sout_next = 1'b1;
+
+
+        case (next_state)
+            IDLE: begin      
+
+				sout_next = 1'b1;
+				bit_counter_next = 0;
+				buffer_next = 0;
+				
+            end
+
+            SET_TYPE: begin
+
+				buffer_next = aluin;
+
+				if (aluin[8] == 1) begin
+					bit_counter_next = 12;
+				end else begin
+					bit_counter_next = 56;
+				end
+
+        	end
+
+			FRAME: begin
+
+				bit_counter_next = bit_counter - 1;
+				sout_next = buffer[bit_counter - 1];			
+				              
+        	end
+
+			
+        endcase
+    end
+	
 	always @* begin
-		//next_state = state;
 		case (state)
-			IDLE: begin
-				if( (CTLin[7] == 0) ||  CTLin[7:0] == 8'b10010011 || CTLin[7:0] == 8'b11001001 || CTLin[7:0] == 8'b10100101) begin
-					next_bit_counter = 0;
-					next_byte_counter = 0;
-					C = Cin;
-					CTL = CTLin;
-					next_state = SET_START_BIT;
-				end
-				else sout = 1;
-			end
-			SET_START_BIT: begin
-				next_bit_counter = 0;
-				sout = 0;
-				next_state = SET_PACKET_TYPE;
-			end
-			SET_PACKET_TYPE: begin
-				if (CTL[7:0] == 8'b10010011 || CTL[7:0] == 8'b11001001 || CTL[7:0] == 8'b10100101) begin
 
-					sout = 1;
-					next_state = TRANSMIT_ERROR;
-
-				end	else if (byte_counter == 4 ) begin
-
-					sout = 1;
-					next_state = TRANSMIT_COMMAND;
-					
+			IDLE: begin              
+				if (dataready == 1) begin
+					next_state = SET_TYPE;
 				end else begin
-					sout = 0;
-					next_state = TRANSMIT_DATA;
-					
-
-				end 
-			end
-			TRANSMIT_DATA: begin
-				if (bit_counter == 7 ) begin
-
-					sout = C[31 - (bit_counter + byte_counter*8)];
-					next_bit_counter = bit_counter + 1;
-
-					next_state = GET_NEXT_BYTE;
-					next_byte_counter = byte_counter + 1;
-				end else begin
-					
-					sout = C[31 - (bit_counter + byte_counter*8)];
-					next_bit_counter = bit_counter + 1;
-				end
-			end
-			TRANSMIT_COMMAND: begin
-				if (bit_counter == 7) begin
-					sout = CTL[(7 - bit_counter)];
-					next_bit_counter = bit_counter + 1;
-					next_state = SET_STOP_BIT;
-				end else begin
-					sout = CTL[(7 - bit_counter)];
-					next_bit_counter = bit_counter + 1;
-					
-				end
-			end
-
-			TRANSMIT_ERROR: begin
-				if (bit_counter == 7) begin
-					sout = CTL[(7 - bit_counter)];
-					next_bit_counter = bit_counter + 1;
-					next_state = SET_STOP_BIT;
-				end else begin
-					sout = CTL[(7 - bit_counter)];
-					next_bit_counter = bit_counter + 1;
-					
-				end
-			end
-
-			GET_NEXT_BYTE: begin
-				sout = 1;
-				if (byte_counter < 5) begin
-					next_state = SET_START_BIT;
-				end else begin 
 					next_state = IDLE;
 				end
-			end
+            end
 
-			SET_STOP_BIT: begin
-				sout = 1;
-				next_state = IDLE;
-			end
-		
+            SET_TYPE: begin
+
+				next_state = FRAME;
+
+        	end
+
+			FRAME: begin
+				if (bit_counter == 0) begin
+					next_state = IDLE;					
+				end else begin
+					next_state = FRAME;
+				end				              
+        	end
+
+			
+            default:
+                next_state = IDLE;
+
 		endcase
 	end
 
-endmodule
+  
+	
+	
+endmodule //deserializer
+
+
+
+
