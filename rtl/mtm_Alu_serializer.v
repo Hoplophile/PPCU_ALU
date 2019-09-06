@@ -23,6 +23,7 @@ module mtm_Alu_serializer(
 
 			state <= IDLE;
             next_state <= IDLE;
+			sout_next <= 1'b1;
 
             			
         end	else begin
@@ -56,17 +57,17 @@ module mtm_Alu_serializer(
 				sout_next = 1'b1;
 				
 				if (aluin[8] == 1) begin
-					bit_counter_next = 12;
+					bit_counter_next = 11;
 				end else begin
-					bit_counter_next = 56;
+					bit_counter_next = 55;
 				end
 
         	end
 
 			FRAME: begin
 
-				bit_counter_next = bit_counter - 1;
-				sout_next = buffer[bit_counter - 1];			
+				sout_next = buffer[bit_counter - 1];
+				bit_counter_next = bit_counter - 1;			
 				              
         	end
 
