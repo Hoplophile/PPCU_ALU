@@ -53,7 +53,8 @@ module mtm_Alu_serializer(
             SET_TYPE: begin
 
 				buffer_next = aluin;
-
+				sout_next = 1'b1;
+				
 				if (aluin[8] == 1) begin
 					bit_counter_next = 12;
 				end else begin
