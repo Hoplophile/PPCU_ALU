@@ -14,6 +14,7 @@
  * The ALU should use posedge active clock and synchronous reset active LOW.
  *
  *******************************************************************************/
+`timescale 1ns/1ps
 
 
 module mtm_Alu (
@@ -24,14 +25,43 @@ module mtm_Alu (
 );
 
 
+wire [31:0] A;
+wire [31:0] B;
+wire [31:0] C;
+wire [7:0] CTL;
+wire [7:0] CTL_out;
+
+
+
 mtm_Alu_deserializer u_mtm_Alu_deserializer(
+  .clk    (clk),
+  .rst (rst_n),
+  .sin (sin),
+  .A (A),
+  .B (B),
+  .CTL(CTL)
 );
 
 mtm_Alu_core u_mtm_Alu_core(
+  .clk(clk),
+  .rst_n(rst_n),
+  .A(A),
+  .B(B),
+  .CTL(CTL),
+  .C(C),
+  .CTL_out(CTL_out)
 );
 
 mtm_Alu_serializer u_mtm_Alu_serializer(
+  .clk(clk),
+  .reset(rst_n),
+  .Cin(C),
+  .CTLin(CTL_out),
+  .sout(sout)
 );
+
+
+
 
 
 endmodule

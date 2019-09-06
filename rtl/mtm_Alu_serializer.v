@@ -14,6 +14,7 @@
  * The ALU should use posedge active clock and synchronous reset active LOW.
  *
  *******************************************************************************/
+`timescale 1ns/1ps
 
 
 module mtm_Alu_serializer
@@ -43,7 +44,7 @@ module mtm_Alu_serializer
 	end
 
 	always @ (posedge clk) begin
-		if (reset == 1) begin
+		if (!reset) begin
 			state <= IDLE;
 			bit_counter <= 0;
 			next_bit_counter <= 0;
