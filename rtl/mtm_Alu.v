@@ -30,25 +30,27 @@ wire [31:0] B;
 wire [31:0] C;
 wire [7:0] CTL;
 wire [7:0] CTL_out;
-
+wire data_valid;
+wire [9:0] packet;
+wire [54:0] ALU_out;
+wire data_ready;
 
 
 mtm_Alu_deserializer u_mtm_Alu_deserializer(
-  .clk    (clk),
-  .rst (rst_n),
-  .sin (sin),
-  .A (A),
-  .B (B),
-  .CTL(CTL)
+  .clk(clk),
+  .rst(rst_n),
+  .sin(sin),
+  .packet(packet),
+  .data_valid(data_valid)
 );
 
 mtm_Alu_core u_mtm_Alu_core(
   .clk(clk),
   .rst_n(rst_n),
-  .A(A),
-  .B(B),
-  .CTL(CTL),
-  .C(C),
+  .frame(packet),
+  .input_ready(data_valid),
+  .ALU_out(ALU_out),
+  .data_ready(data_ready),
   .CTL_out(CTL_out)
 );
 
