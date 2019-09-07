@@ -198,7 +198,7 @@ module mtm_Alu_core(
 				packet_counter_nxt = 0;
 				
 				CRC4forData68({B, A, 1'b1, OP_nxt}, CRC4);
-				if((OP_nxt != ADD) && (OP_nxt != OR) && (OP_nxt != OR) && (OP_nxt != AND)) begin
+				if((OP_nxt != ADD) && (OP_nxt != OR) && (OP_nxt != SUB) && (OP_nxt != AND)) begin
 					error_nxt = 1;				//OP error
 					CTL_nxt = 8'b10010011;
 				end
@@ -230,18 +230,18 @@ module mtm_Alu_core(
 			
 				case(OP)
 					AND: begin
-						C_buff_nxt = A | B;
+						C_buff_nxt = A & B;
 					end
 					OR: begin
 						C_buff_nxt = A | B;
 					end
 					ADD: begin
 						{f_carry, C_buff_nxt} = A + B;
-						f_overflow = ((A[31] == 0 && B[31] == 0 && C_buff_nxt[31] == 1) || (A[31] == 1 && B[31] == 1 && C_buff_nxt[31] == 0));
+						f_overflow = ((B[31] ^ C_buff_nxt[31]) ^ A[31]) ^ f_carry;
 					end
 					SUB: begin
 						{f_carry, C_buff_nxt} = A - B;
-						f_overflow = ((A[31] == 0 && B[31] == 0 && C_buff_nxt[31] == 1) || (A[31] == 1 && B[31] == 1 && C_buff_nxt[31] == 0));
+						f_overflow = ((B[31] ^ C_buff_nxt[31]) ^ A[31]) ^ f_carry;
 					end
 				endcase
 				
@@ -258,8 +258,8 @@ module mtm_Alu_core(
 				OP_nxt = OP;
 				C_buff_nxt = C_buff;			
 				error_nxt = 0;
-				A_nxt = A;
-				B_nxt = B;
+				A_nxt = 32'hFFFFFFFF;
+				B_nxt = 32'hFFFFFFFF;
 				CTL_nxt = CTL;
 				data_ready_nxt = 1;
 				frame_buff_nxt = frame_buff;
