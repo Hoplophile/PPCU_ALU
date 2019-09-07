@@ -101,8 +101,8 @@ module mtm_Alu_core(
 				if(input_ready == 1) state_nxt = CHECK_DATA;
 			end
 			CHECK_DATA: begin
-				//if(error == 1) state_nxt = ERROR; 
-				state_nxt = BUFFER;
+				if(error == 1) state_nxt = ERROR; 
+				else state_nxt = BUFFER;
 			end
 			BUFFER: begin
 				if(packet_counter == 9) state_nxt = CHECK_OP_CRC;
@@ -116,7 +116,7 @@ module mtm_Alu_core(
 				state_nxt = SEND;
 			end
 			SEND: begin
-				state_nxt = IDLE;	//wyzerować frame controle
+				state_nxt = IDLE;
 			end
 			ERROR: begin
 				state_nxt = SEND;
@@ -156,7 +156,7 @@ module mtm_Alu_core(
 						CTL_nxt = 8'b11001001;
 					end
 				end
-				else if(packet_counter_nxt == 8) begin
+				else if(packet_counter == 8) begin
 					if(frame[8] == 0) begin
 						error_nxt = 1;		//frame type bit error
 						CTL_nxt = 8'b11001001;
@@ -236,11 +236,11 @@ module mtm_Alu_core(
 						C_buff_nxt = A | B;
 					end
 					ADD: begin
-						{f_carry, C_buff_nxt} = A + B;
+						{f_carry, C_buff_nxt} = {1'b0, A} + {1'b0, B};
 						f_overflow = ((B[31] ^ C_buff_nxt[31]) ^ A[31]) ^ f_carry;
 					end
 					SUB: begin
-						{f_carry, C_buff_nxt} = A - B;
+						{f_carry, C_buff_nxt} = {1'b0, A} - {1'b0, B};
 						f_overflow = ((B[31] ^ C_buff_nxt[31]) ^ A[31]) ^ f_carry;
 					end
 				endcase
