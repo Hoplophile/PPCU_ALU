@@ -1,3 +1,17 @@
+/******************************************************************************
+ * (C) Copyright 2019 AGH UST All Rights Reserved
+ *
+ * MODULE:    mtm_Alu_serializer
+ * PROJECT:   PPCU_VLSI
+ * AUTHORS:   Szymon Janik
+ * DATE:      06.09.2019
+ * ------------------------------------------------------------------------------
+ *
+ *  This module receives a full frame of data and send it via serial output.
+ *  
+ *******************************************************************************/
+
+
 `timescale 1ns/1ps
 
 

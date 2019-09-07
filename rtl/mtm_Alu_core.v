@@ -1,3 +1,16 @@
+/******************************************************************************
+ * (C) Copyright 2019 AGH UST All Rights Reserved
+ *
+ * MODULE:    mtm_Alu_core
+ * PROJECT:   PPCU_VLSI
+ * AUTHORS:   Piotr Ziebinski
+ * DATE:      07.09.2019
+ * ------------------------------------------------------------------------------
+ *
+ *  This module performs ALU operations, it also handles data, crc and op errors. 
+ *
+ *******************************************************************************/
+
 `timescale 1ns/1ps
 
 
@@ -197,7 +210,7 @@ module mtm_Alu_core(
 				frame_buff_nxt = frame_buff;
 				packet_counter_nxt = 0;
 				
-				CRC4forData68({B, A, 1'b1, OP_nxt}, CRC4);
+				CRC4_68({B, A, 1'b1, OP_nxt}, CRC4);
 				if((OP_nxt != ADD) && (OP_nxt != OR) && (OP_nxt != SUB) && (OP_nxt != AND)) begin
 					error_nxt = 1;				//OP error
 					CTL_nxt = 8'b10010011;
@@ -250,7 +263,7 @@ module mtm_Alu_core(
 				//is zero
 				if(C_buff_nxt == 0) f_zero = 1;
 				//calculate CTL
-				CRC3forData37({C_buff_nxt, 1'b0, f_carry, f_overflow, f_zero, f_negative}, CRC3);
+				CRC3_37({C_buff_nxt, 1'b0, f_carry, f_overflow, f_zero, f_negative}, CRC3);
 				CTL_nxt = {1'b0, f_carry, f_overflow, f_zero, f_negative, CRC3};
 			end
 			
@@ -286,37 +299,37 @@ module mtm_Alu_core(
 		endcase
 	end
 
-	task CRC3forData37;
-	  // polynomial: x^3 + x^1 + 1 (0x5) with initial value 0
-	  input reg [36:0] Data_in;
+	task CRC3_37;
+
+	  input reg [36:0] data;
 	  output reg [2:0] CRC3_result;
 
-	  reg [36:0] d;
+	  reg [36:0] data_copy;
 	  reg [2:0] Result;
 
 	  begin
-		 d = Data_in;
-		 Result[0] = d[35] ^ d[32] ^ d[31] ^ d[30] ^ d[28] ^ d[25] ^ d[24] ^ d[23] ^ d[21] ^ d[18] ^ d[17] ^ d[16] ^ d[14] ^ d[11] ^ d[10] ^ d[9] ^ d[7] ^ d[4] ^ d[3] ^ d[2] ^ d[0];
-		 Result[1] = d[36] ^ d[35] ^ d[33] ^ d[30] ^ d[29] ^ d[28] ^ d[26] ^ d[23] ^ d[22] ^ d[21] ^ d[19] ^ d[16] ^ d[15] ^ d[14] ^ d[12] ^ d[9] ^ d[8] ^ d[7] ^ d[5] ^ d[2] ^ d[1] ^ d[0];
-		 Result[2] = d[36] ^ d[34] ^ d[31] ^ d[30] ^ d[29] ^ d[27] ^ d[24] ^ d[23] ^ d[22] ^ d[20] ^ d[17] ^ d[16] ^ d[15] ^ d[13] ^ d[10] ^ d[9] ^ d[8] ^ d[6] ^ d[3] ^ d[2] ^ d[1];
+		 data_copy = data;
+		 Result[0] = data_copy[35] ^ data_copy[32] ^ data_copy[31] ^ data_copy[30] ^ data_copy[28] ^ data_copy[25] ^ data_copy[24] ^ data_copy[23] ^ data_copy[21] ^ data_copy[18] ^ data_copy[17] ^ data_copy[16] ^ data_copy[14] ^ data_copy[11] ^ data_copy[10] ^ data_copy[9] ^ data_copy[7] ^ data_copy[4] ^ data_copy[3] ^ data_copy[2] ^ data_copy[0];
+		 Result[1] = data_copy[36] ^ data_copy[35] ^ data_copy[33] ^ data_copy[30] ^ data_copy[29] ^ data_copy[28] ^ data_copy[26] ^ data_copy[23] ^ data_copy[22] ^ data_copy[21] ^ data_copy[19] ^ data_copy[16] ^ data_copy[15] ^ data_copy[14] ^ data_copy[12] ^ data_copy[9] ^ data_copy[8] ^ data_copy[7] ^ data_copy[5] ^ data_copy[2] ^ data_copy[1] ^ data_copy[0];
+		 Result[2] = data_copy[36] ^ data_copy[34] ^ data_copy[31] ^ data_copy[30] ^ data_copy[29] ^ data_copy[27] ^ data_copy[24] ^ data_copy[23] ^ data_copy[22] ^ data_copy[20] ^ data_copy[17] ^ data_copy[16] ^ data_copy[15] ^ data_copy[13] ^ data_copy[10] ^ data_copy[9] ^ data_copy[8] ^ data_copy[6] ^ data_copy[3] ^ data_copy[2] ^ data_copy[1];
 		 CRC3_result = Result;
 	  end
 	endtask
 	
-	task CRC4forData68;
-      // polynomial: x^4 + x^1 +1 (0x9) with initial value 0
-      input reg [67:0] Data_in;
+	task CRC4_68;
+     
+      input reg [67:0] data;
       output reg [3:0] CRC4_result;
       
-      reg [67:0] d;
+      reg [67:0] data_copy;
       reg [3:0] Result;
 
       begin
-         d = Data_in;
-         Result[0] = d[66] ^ d[64] ^ d[63] ^ d[60] ^ d[56] ^ d[55] ^ d[54] ^ d[53] ^ d[51] ^ d[49] ^ d[48] ^ d[45] ^ d[41] ^ d[40] ^ d[39] ^ d[38] ^ d[36] ^ d[34] ^ d[33] ^ d[30] ^ d[26] ^ d[25] ^ d[24] ^ d[23] ^ d[21] ^ d[19] ^ d[18] ^ d[15] ^ d[11] ^ d[10] ^ d[9] ^ d[8] ^ d[6] ^ d[4] ^ d[3] ^ d[0];
-         Result[1] = d[67] ^ d[66] ^ d[65] ^ d[63] ^ d[61] ^ d[60] ^ d[57] ^ d[53] ^ d[52] ^ d[51] ^ d[50] ^ d[48] ^ d[46] ^ d[45] ^ d[42] ^ d[38] ^ d[37] ^ d[36] ^ d[35] ^ d[33] ^ d[31] ^ d[30] ^ d[27] ^ d[23] ^ d[22] ^ d[21] ^ d[20] ^ d[18] ^ d[16] ^ d[15] ^ d[12] ^ d[8] ^ d[7] ^ d[6] ^ d[5] ^ d[3] ^ d[1] ^ d[0];
-         Result[2] = d[67] ^ d[66] ^ d[64] ^ d[62] ^ d[61] ^ d[58] ^ d[54] ^ d[53] ^ d[52] ^ d[51] ^ d[49] ^ d[47] ^ d[46] ^ d[43] ^ d[39] ^ d[38] ^ d[37] ^ d[36] ^ d[34] ^ d[32] ^ d[31] ^ d[28] ^ d[24] ^ d[23] ^ d[22] ^ d[21] ^ d[19] ^ d[17] ^ d[16] ^ d[13] ^ d[9] ^ d[8] ^ d[7] ^ d[6] ^ d[4] ^ d[2] ^ d[1];
-         Result[3] = d[67] ^ d[65] ^ d[63] ^ d[62] ^ d[59] ^ d[55] ^ d[54] ^ d[53] ^ d[52] ^ d[50] ^ d[48] ^ d[47] ^ d[44] ^ d[40] ^ d[39] ^ d[38] ^ d[37] ^ d[35] ^ d[33] ^ d[32] ^ d[29] ^ d[25] ^ d[24] ^ d[23] ^ d[22] ^ d[20] ^ d[18] ^ d[17] ^ d[14] ^ d[10] ^ d[9] ^ d[8] ^ d[7] ^ d[5] ^ d[3] ^ d[2];
+         data_copy = data;
+         Result[0] = data_copy[66] ^ data_copy[64] ^ data_copy[63] ^ data_copy[60] ^ data_copy[56] ^ data_copy[55] ^ data_copy[54] ^ data_copy[53] ^ data_copy[51] ^ data_copy[49] ^ data_copy[48] ^ data_copy[45] ^ data_copy[41] ^ data_copy[40] ^ data_copy[39] ^ data_copy[38] ^ data_copy[36] ^ data_copy[34] ^ data_copy[33] ^ data_copy[30] ^ data_copy[26] ^ data_copy[25] ^ data_copy[24] ^ data_copy[23] ^ data_copy[21] ^ data_copy[19] ^ data_copy[18] ^ data_copy[15] ^ data_copy[11] ^ data_copy[10] ^ data_copy[9] ^ data_copy[8] ^ data_copy[6] ^ data_copy[4] ^ data_copy[3] ^ data_copy[0];
+         Result[1] = data_copy[67] ^ data_copy[66] ^ data_copy[65] ^ data_copy[63] ^ data_copy[61] ^ data_copy[60] ^ data_copy[57] ^ data_copy[53] ^ data_copy[52] ^ data_copy[51] ^ data_copy[50] ^ data_copy[48] ^ data_copy[46] ^ data_copy[45] ^ data_copy[42] ^ data_copy[38] ^ data_copy[37] ^ data_copy[36] ^ data_copy[35] ^ data_copy[33] ^ data_copy[31] ^ data_copy[30] ^ data_copy[27] ^ data_copy[23] ^ data_copy[22] ^ data_copy[21] ^ data_copy[20] ^ data_copy[18] ^ data_copy[16] ^ data_copy[15] ^ data_copy[12] ^ data_copy[8] ^ data_copy[7] ^ data_copy[6] ^ data_copy[5] ^ data_copy[3] ^ data_copy[1] ^ data_copy[0];
+         Result[2] = data_copy[67] ^ data_copy[66] ^ data_copy[64] ^ data_copy[62] ^ data_copy[61] ^ data_copy[58] ^ data_copy[54] ^ data_copy[53] ^ data_copy[52] ^ data_copy[51] ^ data_copy[49] ^ data_copy[47] ^ data_copy[46] ^ data_copy[43] ^ data_copy[39] ^ data_copy[38] ^ data_copy[37] ^ data_copy[36] ^ data_copy[34] ^ data_copy[32] ^ data_copy[31] ^ data_copy[28] ^ data_copy[24] ^ data_copy[23] ^ data_copy[22] ^ data_copy[21] ^ data_copy[19] ^ data_copy[17] ^ data_copy[16] ^ data_copy[13] ^ data_copy[9] ^ data_copy[8] ^ data_copy[7] ^ data_copy[6] ^ data_copy[4] ^ data_copy[2] ^ data_copy[1];
+         Result[3] = data_copy[67] ^ data_copy[65] ^ data_copy[63] ^ data_copy[62] ^ data_copy[59] ^ data_copy[55] ^ data_copy[54] ^ data_copy[53] ^ data_copy[52] ^ data_copy[50] ^ data_copy[48] ^ data_copy[47] ^ data_copy[44] ^ data_copy[40] ^ data_copy[39] ^ data_copy[38] ^ data_copy[37] ^ data_copy[35] ^ data_copy[33] ^ data_copy[32] ^ data_copy[29] ^ data_copy[25] ^ data_copy[24] ^ data_copy[23] ^ data_copy[22] ^ data_copy[20] ^ data_copy[18] ^ data_copy[17] ^ data_copy[14] ^ data_copy[10] ^ data_copy[9] ^ data_copy[8] ^ data_copy[7] ^ data_copy[5] ^ data_copy[3] ^ data_copy[2];
          CRC4_result = Result;
       end
    endtask

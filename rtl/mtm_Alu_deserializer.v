@@ -1,5 +1,20 @@
-`timescale 1ns/1ps
+/******************************************************************************
+ * (C) Copyright 2019 AGH UST All Rights Reserved
+ *
+ * MODULE:    mtm_Alu_deserializer
+ * PROJECT:   PPCU_VLSI
+ * AUTHORS:   Szymon Janik
+ * DATE:      06.09.2019
+ * ------------------------------------------------------------------------------
+ *
+ *  This module retrieves raw bit data from the input stream.
+ *  It prepares 10-bit data packets and sends them to the alu_core module.  
+ *
+ *******************************************************************************/
 
+
+
+`timescale 1ns/1ps
 
 module mtm_Alu_deserializer(
 	input wire clk,
