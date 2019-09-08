@@ -3,7 +3,7 @@
  *
  * MODULE:    mtm_Alu
  * PROJECT:   PPCU_VLSI
- * AUTHORS:
+ * AUTHORS:	  S. Janik
  * DATE:
  * ------------------------------------------------------------------------------
  * The ALU should operate as described in the mtmAlu_test_top module.
