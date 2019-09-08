@@ -73,6 +73,7 @@ module mtm_Alu_tb (
 		test_wrong_num_of_packets;
 		reset_DUT;
 		test_wrong_op;
+		$finish;
 	end
 	
 	
@@ -149,8 +150,8 @@ module mtm_Alu_tb (
 				//FAIL
 				else begin
 					$display("	FAIL: Alu returned wrong DATA %b; expected: %b", alu_data, expected_data);
-					//$stop;
-					//$finish;
+					$stop;
+					$finish;
 				end
 			end
 			
@@ -162,8 +163,8 @@ module mtm_Alu_tb (
 			//FAIL
 			else begin
 				$display("	FAIL: Alu returned wrong CTL %b; expected: %b", alu_data, expected_data);
-				//$stop;
-				//$finish;
+				$stop;
+				$finish;
 			end
 			
 		end

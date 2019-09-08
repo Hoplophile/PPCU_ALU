@@ -34,54 +34,48 @@ module mtm_Alu_serializer(
   
     always @ (posedge clk) begin
 		if (!rst) begin
-
 			state <= IDLE;
-            next_state <= IDLE;
-			sout_next <= 1'b1;
+            		sout <= 1'b1;
+			buffer <= 0;
+			bit_counter <= 0;
+		end	else begin
 
-            			
-        end	else begin
-
-            state <= next_state;   
+            		state <= next_state;   
 			buffer <= buffer_next;        
 			sout <= sout_next;  
 			bit_counter <= bit_counter_next;
+			end			
+		end
 
-        end			
-	end
-
-    always @* begin
-        
-		buffer_next = buffer;
-		sout_next = 1'b1;
-
+    always @* begin        
+	sout_next = sout;
+	bit_counter_next = bit_counter;
+	buffer_next = buffer;
 
         case (next_state)
             IDLE: begin      
 
-				sout_next = 1'b1;
-				bit_counter_next = 0;
-				buffer_next = 0;
+			sout_next = 0;
+			bit_counter_next = 0;
+			buffer_next = 0;
 				
             end
 
             SET_TYPE: begin
-
-				buffer_next = aluin;
-				sout_next = 1'b1;
-				
-				if (aluin[8] == 1) begin
-					bit_counter_next = 11;
-				end else begin
-					bit_counter_next = 55;
-				end
+			buffer_next = aluin;
+			sout_next = 1'b1;
+			
+			if (aluin[8] == 1) begin
+				bit_counter_next = 11;
+			end else begin
+				bit_counter_next = 55;
+			end
 
         	end
 
-			FRAME: begin
-
-				sout_next = buffer[bit_counter - 1];
-				bit_counter_next = bit_counter - 1;			
+	FRAME: begin
+		sout_next = buffer[bit_counter - 1];
+		bit_counter_next = bit_counter - 1;			
 				              
         	end
 
@@ -90,6 +84,7 @@ module mtm_Alu_serializer(
     end
 	
 	always @* begin
+
 		case (state)
 
 			IDLE: begin              

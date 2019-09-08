@@ -72,25 +72,23 @@ module mtm_Alu_core(
 	//operation flags
 	reg f_carry, f_overflow, f_zero, f_negative;
 	
-	always @(posedge clk or posedge rst_n) begin
+	always @(posedge clk) begin
 		if (!rst_n) begin
 			f_carry 		<= 0; 
 			f_overflow 		<= 0; 
 			f_zero 			<= 0; 
 			f_negative 		<= 0;
-			CTL				<= 0;
-			CTL_nxt			<= 0;
+			CTL			<= 0;
 			C_buff			<= 0;
-			C_buff_nxt		<= 0;
 			data_ready		<= 0;
-			data_ready_nxt	<= 0;
-			A				<= 32'hFFFFFFFF;
-			B				<= 32'hFFFFFFFF;
-			ALU_out_nxt		<= 55'hFFFFFFFFFFFFFF;
-			state_nxt		<= IDLE;
+			OP			<= 0;
+			error			<= 0;
+			frame_buff		<= 0;
+			A			<= 32'hFFFFFFFF;
+			B			<= 32'hFFFFFFFF;
+			ALU_out			<= 55'hFFFFFFFFFFFFFF;
 			state			<= IDLE;
-			packet_counter	<= 0;
-			packet_counter_nxt<= 0;
+			packet_counter		<= 0;
 		end
 		else begin
 			CTL		 		<= CTL_nxt;
@@ -100,7 +98,6 @@ module mtm_Alu_core(
 			error			<= error_nxt;
 			C_buff			<= C_buff_nxt;
 			ALU_out 		<= ALU_out_nxt;
-			OP				<= OP_nxt;
 			A				<= A_nxt;
 			B				<= B_nxt;
 			OP				<= OP_nxt;
@@ -109,6 +106,7 @@ module mtm_Alu_core(
 	end
 	
 	always @* begin
+		state_nxt = state;
 		case(state) 
 			IDLE: begin
 				if(input_ready == 1) state_nxt = CHECK_DATA;
@@ -138,6 +136,16 @@ module mtm_Alu_core(
 	end
 	
 	always @* begin
+		ALU_out_nxt = 0;
+		A_nxt = 0;
+		B_nxt = 0;
+		CTL_nxt = 0;
+		C_buff_nxt = 0;
+		OP_nxt = 0;
+		error_nxt = 0;
+		data_ready_nxt = 0;
+		frame_buff_nxt = 0;
+		packet_counter_nxt = 0;
 		case(state_nxt) 
 			IDLE: begin
 				OP_nxt = 0;
@@ -297,6 +305,7 @@ module mtm_Alu_core(
 				packet_counter_nxt = 0;
 			end
 		endcase
+		
 	end
 
 	task CRC3_37;

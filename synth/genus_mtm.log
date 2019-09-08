@@ -1,0 +1,1014 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2017 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Version: 17.13-s033_1, built Thu Feb 15 2018
+Options: -abort_on_error -no_gui -batch -files tcl/synth_mtmAlu.tcl -log genus_mtm -overwrite 
+Date:    Sat Sep 07 20:45:01 2019
+Host:    cadence212 (x86_64 w/Linux 2.6.32-754.6.3.el6.x86_64) (16cores*64cpus*2physical cpus*Intel(R) Xeon(R) Gold 6130 CPU @ 2.10GHz 22528KB) (264129332KB)
+OS:      CentOS release 6.10 (Final)
+
+Checking out license: Genus_Synthesis
+
+Loading tool scripts...
+Finished loading tool scripts (8 seconds elapsed).
+
+#@ Processing -files option
+@genus 1> source tcl/synth_mtmAlu.tcl
+#@ Begin verbose source tcl/synth_mtmAlu.tcl
+@file(synth_mtmAlu.tcl) 9: set_db information_level 7 
+  Setting attribute of root '/': 'information_level' = 7
+@file(synth_mtmAlu.tcl) 12: source tcl/flow_config.tcl
+Sourcing './tcl/flow_config.tcl' (Sat Sep 07 20:45:09 CEST 2019)...
+#@ Begin verbose source tcl/flow_config.tcl
+@file(flow_config.tcl) 5: set_db design_process_node 180
+  Setting attribute of root '/': 'design_process_node' = 180
+@file(flow_config.tcl) 7: set_db syn_generic_effort express
+  Setting attribute of root '/': 'syn_generic_effort' = express
+@file(flow_config.tcl) 8: set_db syn_map_effort express
+  Setting attribute of root '/': 'syn_map_effort' = express
+@file(flow_config.tcl) 9: set_db syn_opt_effort express
+  Setting attribute of root '/': 'syn_opt_effort' = express
+@file(flow_config.tcl) 11: set_db remove_assigns true
+  Setting attribute of root '/': 'remove_assigns' = true
+@file(flow_config.tcl) 12: set_db optimize_merge_flops false 
+  Setting attribute of root '/': 'optimize_merge_flops' = false
+@file(flow_config.tcl) 14: set_db max_cpus_per_server 1 ; # limiting to 8 CPU
+  Setting attribute of root '/': 'max_cpus_per_server' = 1
+@file(flow_config.tcl) 16: set_db enable_domain_name_check 0
+  Setting attribute of root '/': 'enable_domain_name_check' = 0
+@file(flow_config.tcl) 19: set_db hdl_use_cw_first false 
+  Setting attribute of root '/': 'hdl_use_cw_first' = false
+@file(flow_config.tcl) 20: set_db wlec_set_cdn_synth_root true
+  Setting attribute of root '/': 'wlec_set_cdn_synth_root' = true
+@file(flow_config.tcl) 23: set_db use_power_ground_pin_from_lef true
+  Setting attribute of root '/': 'use_power_ground_pin_from_lef' = true
+@file(flow_config.tcl) 25: set_db hdl_track_filename_row_col                 true   ;#used for cross probing and datapath report. May be memory consuming
+Info   : Enabled hdl_track_file_row_column attribute.
+       : Setting this attribute to 'true' can have an impact on the run time. Use this attribute only when filename, line number, and column information are needed in reports.
+  Setting attribute of root '/': 'hdl_track_filename_row_col' = true
+@file(flow_config.tcl) 26: set_db verification_directory_naming_style        "./LEC"
+  Setting attribute of root '/': 'verification_directory_naming_style' = ./LEC
+#@ End verbose source tcl/flow_config.tcl
+@file(synth_mtmAlu.tcl) 17: read_mmmc "constraints/mmode.tcl"
+Sourcing './constraints/mmode.tcl' (Sat Sep 07 20:45:09 CEST 2019)...
+#@ Begin verbose source constraints/mmode.tcl
+@file(mmode.tcl) 2: create_library_set -name WC_libs -timing [ list /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib ]
+@file(mmode.tcl) 3: create_library_set -name BC_libs -timing [ list /cad/dk/umc180/SUS/SUSLIB_UCL_ff.lib ]
+@file(mmode.tcl) 6: create_opcond -name op_cond_slow -process 1 -voltage 1.7 -temperature 80
+@file(mmode.tcl) 7: create_opcond -name op_cond_fast -process 1 -voltage 1.9 -temperature 0
+@file(mmode.tcl) 10: create_rc_corner -name WC_rc -temperature 80 -qrc_tech /cad/dk/umc180oa/Rulefiles/QRC/G-DF-MIXED_MODE_RFCMOS18-1.8V_3.3V-1P6M-MMC/qrcTechFile
+@file(mmode.tcl) 11: create_rc_corner -name BC_rc -temperature 0  -qrc_tech /cad/dk/umc180oa/Rulefiles/QRC/G-DF-MIXED_MODE_RFCMOS18-1.8V_3.3V-1P6M-MMC/qrcTechFile
+@file(mmode.tcl) 15: create_timing_condition -name WC_tc -opcond op_cond_slow -library_sets WC_libs
+@file(mmode.tcl) 16: create_timing_condition -name BC_tc -opcond op_cond_fast -library_sets BC_libs
+@file(mmode.tcl) 20: create_delay_corner -name WC_dc -timing_condition WC_tc -rc_corner WC_rc
+@file(mmode.tcl) 21: create_delay_corner -name BC_dc -timing_condition BC_tc -rc_corner BC_rc
+@file(mmode.tcl) 25: create_constraint_mode -name standard_cm -sdc_files [ list ./constraints/mtmAlu.sdc ]
+            Reading file '/home/student/pziebinski/projekt/PPCU_ALU/synth/constraints/mtmAlu.sdc'
+@file(mmode.tcl) 28: create_analysis_view -name WC_av -delay_corner WC_dc -constraint_mode standard_cm
+@file(mmode.tcl) 29: create_analysis_view -name BC_av -delay_corner BC_dc -constraint_mode standard_cm
+@file(mmode.tcl) 32: set_analysis_view -setup [ list WC_av ] -hold [ list BC_av ]
+            Reading file '/cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib'
+    Loading library SUSLIB_UCL_ss.lib
+Info    : Missing library level attribute. [LBR-516]
+        : slew_derate_from_library not specified in the library, using .lib default of 1. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib, Line 8)
+
+  Message Summary for Library SUSLIB_UCL_ss.lib:
+  **********************************************
+  Could not find an attribute in the library. [LBR-436]: 143
+  Missing library level attribute. [LBR-516]: 1
+  **********************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.700000, 80.000000) in library 'SUSLIB_UCL_ss.lib'.
+        : The nominal operating condition represents either the nominal PVT values if specified in the library source, or the default PVT values (1.0, 1.0, 1.0).
+        Cell 'UCL_CAP5' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP5' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Otherwise, the library cell will be marked as unusable and as timing model.
+        Cell 'UCL_CAP5' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP5' must have an output pin.
+        Cell 'UCL_CAP6' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP6' must have an output pin.
+        Cell 'UCL_CAP6' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP6' must have an output pin.
+        Cell 'UCL_CAP7' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP7' must have an output pin.
+        Cell 'UCL_CAP7' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP7' must have an output pin.
+        Cell 'UCL_CAP8' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP8' must have an output pin.
+        Cell 'UCL_CAP8' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP8' must have an output pin.
+        Cell 'UCL_CAP9' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP9' must have an output pin.
+        Cell 'UCL_CAP9' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_CAP9' must have an output pin.
+        Cell 'UCL_FILL' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_FILL' must have an output pin.
+        Cell 'UCL_FILL' has no outputs.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'UCL_FILL' must have an output pin.
+Info    : Set default library domain. [LBR-109]
+        : The default library domain is 'library_domain:WC_tc'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'CIN' and 'S' in libcell 'UCL_FA' is 'pos_unate', but unateness determined from function is 'non_unate'.
+        : The 'timing_sense' attribute will be respected.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'CIN' and 'S' in libcell 'UCL_FA' is 'neg_unate', but unateness determined from function is 'non_unate'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'CIN' and 'S' in libcell 'UCL_FA'.
+        : Setting the 'timing_sense' to non_unate.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'B' and 'S' in libcell 'UCL_FA' is 'pos_unate', but unateness determined from function is 'non_unate'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'B' and 'S' in libcell 'UCL_FA' is 'neg_unate', but unateness determined from function is 'non_unate'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'B' and 'S' in libcell 'UCL_FA'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'A' and 'S' in libcell 'UCL_FA' is 'pos_unate', but unateness determined from function is 'non_unate'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'A' and 'S' in libcell 'UCL_FA' is 'neg_unate', but unateness determined from function is 'non_unate'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'A' and 'S' in libcell 'UCL_FA'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'SEL' and 'AUS' in libcell 'UCL_MUX2' is 'pos_unate', but unateness determined from function is 'non_unate'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'SEL' and 'AUS' in libcell 'UCL_MUX2' is 'neg_unate', but unateness determined from function is 'non_unate'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'SEL' and 'AUS' in libcell 'UCL_MUX2'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'SEL' and 'AUS' in libcell 'UCL_MUX2A' is 'pos_unate', but unateness determined from function is 'non_unate'.
+Info    : Mismatch in unateness between 'timing_sense' attribute and the function. [LBR-155]
+        : 'timing_sense' attribute between pin 'SEL' and 'AUS' in libcell 'UCL_MUX2A' is 'neg_unate', but unateness determined from function is 'non_unate'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'SEL' and 'AUS' in libcell 'UCL_MUX2A'.
+Info    : Setting the maximum print count of this message to 10 if information_level is less than 9. [LBR-161]
+        : To print all the warning messages, set the information_level to 9.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'SEL' and 'AUS' in libcell 'UCL_MUX2B'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'EIN1' and 'AUS' in libcell 'UCL_XOR'.
+Info    : Both 'pos_unate' and 'neg_unate' timing_sense arcs have been processed. [LBR-162]
+        : Non_unate 'timing_sense' inferred between pin 'EIN0' and 'AUS' in libcell 'UCL_XOR'.
+  Library has 34 usable logic and 7 usable sequential lib-cells.
+#@ End verbose source constraints/mmode.tcl
+@file(synth_mtmAlu.tcl) 20: set_db init_power_nets  {vddd vddb}
+This attribute has no effect on the tool operation.
+  Setting attribute of root '/': 'init_power_nets' = vddd vddb
+@file(synth_mtmAlu.tcl) 21: set_db init_ground_nets {gndd gndb}
+This attribute has no effect on the tool operation.
+  Setting attribute of root '/': 'init_ground_nets' = gndd gndb
+@file(synth_mtmAlu.tcl) 24: read_physical -lef "/cad/dk/umc180/SUS/SUSLIB_UCL_tech.lef /cad/dk/umc180/SUS/SUSLIB_UCL.lef"
+
+  According to lef_library, there are total 6 routing layers [ V(3) / H(3) ]
+
+@file(synth_mtmAlu.tcl) 27: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 28: puts "-- HDL READ --------------------------------------------------------------------"
+-- HDL READ --------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 29: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 32: read_hdl  /student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu.v /student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v /student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v /home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v
+            Reading Verilog file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu.v'
+            Reading Verilog file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v'
+			ALU_out			<= 55'hFFFFFFFFFFFFFF;
+			       			                    |
+Warning : Truncation in sized number. [VLOGPT-16]
+        : 55'hFFFFFFFFFFFFFF in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 89, column 34.
+        : The number of bits specified is larger than the number of declared bits, e.g. 3'b1001.  In this case, the resulting number will be pruned to 3'b001 which may not be the intent of the user.
+				ALU_out_nxt = 55'hFFFFFFFFFFFFFF;
+				                               |
+Warning : Truncation in sized number. [VLOGPT-16]
+        : 55'hFFFFFFFFFFFFFF in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 152, column 36.
+            Reading Verilog file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v'
+            Reading Verilog file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v'
+@file(synth_mtmAlu.tcl) 38: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 39: puts "-- ELABORATION -----------------------------------------------------------------"
+-- ELABORATION -----------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 40: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 41: elaborate
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mtm_Alu' from file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu.v'.
+Info    : Elaborating Subdesign. [ELAB-2]
+        : Elaborating block 'mtm_Alu_deserializer' from file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v'.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_valid' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 39.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'buffer' [10] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 40.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'bit_counter' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 41.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'next_bit_counter' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 55.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'buffer_next' [10] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 56.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'buffer_next' [10] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 62.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'next_bit_counter' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 63.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'next_bit_counter' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 84.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'default' in module 'mtm_Alu_deserializer' in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_deserializer.v' on line 91.
+Info    : Elaborating Subdesign. [ELAB-2]
+        : Elaborating block 'mtm_Alu_core' from file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v'.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_carry' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 77.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_overflow' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 78.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_zero' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 79.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_negative' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 80.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'CTL' [8] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 81.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 83.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'OP' [3] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 84.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 85.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'frame_buff' [10] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 86.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'packet_counter' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 91.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'ALU_out_nxt' [55] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 139.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'CTL_nxt' [8] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 142.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'OP_nxt' [3] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 144.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 145.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 146.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'frame_buff_nxt' [10] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 147.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'packet_counter_nxt' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 148.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'OP_nxt' [3] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 151.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 153.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 158.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'OP_nxt' [3] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 163.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 165.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 170.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 176.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 182.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 187.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'OP_nxt' [3] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 193.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 195.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 200.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'frame_buff_nxt' [10] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 201.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'packet_counter_nxt' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 202.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'B_nxt' [32] doesn't match the width of right hand side [40] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 204.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'A_nxt' [32] doesn't match the width of right hand side [40] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 205.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'CTL_nxt' [8] doesn't match the width of right hand side [16] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 206.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 212.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 217.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'packet_counter_nxt' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 219.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 223.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 227.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 231.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'CTL_nxt' [8] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 232.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 239.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 244.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'packet_counter_nxt' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 246.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_carry' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 247.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_overflow' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 248.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_zero' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 249.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_negative' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 250.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_negative' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 270.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'f_zero' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 272.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 281.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 285.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'packet_counter_nxt' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 287.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'error_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 300.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'data_ready_nxt' [1] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 303.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'packet_counter_nxt' [4] doesn't match the width of right hand side [32] in assignment in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 305.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'f_carry' in module 'mtm_Alu_core' in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 75.
+        : A flip-flop or latch that was inferred for an unused signal or variable was removed. Use '::legacy::set_attribute hdl_preserve_unused_registers true /' to preserve the flip-flop or latch.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'f_overflow' in module 'mtm_Alu_core' in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 75.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'f_zero' in module 'mtm_Alu_core' in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 75.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'f_negative' in module 'mtm_Alu_core' in file '/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_core.v' on line 75.
+Info    : Elaborating Subdesign. [ELAB-2]
+        : Elaborating block 'mtm_Alu_serializer' from file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v'.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'buffer' [55] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 39.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'bit_counter' [6] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 40.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'sout_next' [1] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 58.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'bit_counter_next' [6] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 59.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'buffer_next' [55] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 60.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'bit_counter_next' [6] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 69.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'bit_counter_next' [6] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 71.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'bit_counter_next' [6] doesn't match the width of right hand side [32] in assignment in file '/home/student/pziebinski/projekt/PPCU_ALU/rtl/mtm_Alu_serializer.v' on line 78.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'mtm_Alu'.
+Checking for analog nets.... 
+Check completed for analog nets.
+Info: Checking for source rtl...
+Info: Check completed for source rtl...
+        Computing net loads.
+UM: Capturing floorplan image ...
+UM:  flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:             9              9                                      elaborate
+@file(synth_mtmAlu.tcl) 48: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 49: puts "-- INIT DESIGN -----------------------------------------------------------------"
+-- INIT DESIGN -----------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 50: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 51: init_design
+Started checking and loading power intent for design mtm_Alu...
+===============================================================
+No power intent for design 'mtm_Alu'.
+Completed checking and loading power intent for design mtm_Alu (runtime 0.00s).
+===============================================================================
+#
+# Reading SDC ./constraints/mtmAlu.sdc for view:WC_av (constraint_mode:standard_cm)
+#
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      4 , failed      0 (runtime  0.00)
+ "all_outputs"              - successful      2 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      2 , failed      0 (runtime  0.00)
+ "set_dont_use"             - successful      8 , failed      0 (runtime  0.00)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.00)
+ "set_input_delay"          - successful      1 , failed      0 (runtime  0.00)
+ "set_input_transition"     - successful      1 , failed      0 (runtime  0.00)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.00)
+ "set_load_unit"            - successful      1 , failed      0 (runtime  0.00)
+ "set_max_fanout"           - successful      1 , failed      0 (runtime  0.00)
+ "set_output_delay"         - successful      1 , failed      0 (runtime  0.00)
+ "set_time_unit"            - successful      1 , failed      0 (runtime  0.00)
+ "set_units"                - successful      2 , failed      0 (runtime  0.00)
+Total runtime 0
+
+  According to qrc_tech_file, there are total 6 routing layers [ V(3) / H(3) ]
+
+
+  According to qrc_tech_file, there are total 6 routing layers [ V(3) / H(3) ]
+
+
+  According to qrc_tech_file, there are total 6 routing layers [ V(3) / H(3) ]
+
+  Setting attribute of root '/': 'read_qrc_tech_file_rc_corner' = true
+@file(synth_mtmAlu.tcl) 76: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 77: puts "-- CHECK TIMING CONSTRATINTS ---------------------------------------------------"
+-- CHECK TIMING CONSTRATINTS ---------------------------------------------------
+@file(synth_mtmAlu.tcl) 78: puts "--------------------------------------------------------------------------------"
+--------------------------------------------------------------------------------
+@file(synth_mtmAlu.tcl) 79: check_timing_intent
+Info    : Timing analysis will be done for this view. [TUI-744]
+        : View is 'analysis_view:mtm_Alu/WC_av'.
+        : Worst paths will be shown in this view.
+  Libraries have 31 usable logic and 4 usable sequential lib-cells.
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 17.13-s033_1
+  Generated on:           Sep 07 2019  08:45:11 pm
+  Module:                 mtm_Alu
+  Library domain:         WC_tc
+    Domain index:         0
+    Technology library:   SUSLIB_UCL_SS 
+    Operating conditions: worst 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                     0
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:          0
+
+@file(synth_mtmAlu.tcl) 111: check_design -unresolved
+  Checking the design.
+
+ 	 Check Design Report
+	 -------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'mtm_Alu'
+
+No empty modules in design 'mtm_Alu'
+
+  Done Checking the design.
+@file(synth_mtmAlu.tcl) 122: 	syn_generic
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 19 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'u_mtm_Alu_core/mux_ALU_out_76_7', 'u_mtm_Alu_core/mux_A_76_7', 
+'u_mtm_Alu_core/mux_B_76_7', 'u_mtm_Alu_core/mux_CTL_76_7', 
+'u_mtm_Alu_core/mux_C_buff_76_7', 'u_mtm_Alu_core/mux_OP_76_7', 
+'u_mtm_Alu_core/mux_data_ready_76_7', 'u_mtm_Alu_core/mux_error_76_7', 
+'u_mtm_Alu_core/mux_frame_buff_76_7', 
+'u_mtm_Alu_core/mux_packet_counter_76_7', 'u_mtm_Alu_core/mux_state_76_7', 
+'u_mtm_Alu_deserializer/mux_bit_counter_36_7', 
+'u_mtm_Alu_deserializer/mux_buffer_36_7', 
+'u_mtm_Alu_deserializer/mux_data_valid_36_7', 
+'u_mtm_Alu_deserializer/mux_state_36_7', 
+'u_mtm_Alu_serializer/mux_bit_counter_36_7', 
+'u_mtm_Alu_serializer/mux_buffer_36_7', 
+'u_mtm_Alu_serializer/mux_sout_36_7', 
+'u_mtm_Alu_serializer/mux_state_36_7'.
+        : Optimizations such as constant propagation or redundancy removal could change the connections so a hierarchical instance does not drive any primary outputs anymore. To see the list of deleted hierarchical instances, set the 'information_level' attribute to 2 or above. If the message is truncated set the message attribute 'truncate' to false to see the complete list. To prevent this optimization, set the 'delete_unloaded_insts' root/subdesign attribute to 'false' or 'preserve' instance attribute to 'true'.
+@file(synth_mtmAlu.tcl) 123: 	syn_map
+Warning : Design size is too small for express mapping. [MAP-300]
+        : Current design size is 2248 instances.
+        : Design size is less than 40000 instances, cannot run express mapping. Switching to medium effort instead.
+Current PLE settings:
+
+Aspect ratio        : 1.00
+Shrink factor       : 1.00
+Scale of res/length : 1.00
+Scale of cap/length : 1.00
+Net derating factor : 1.00
+Thermal factor      : 1.19
+Via Resistance      : 6.50 ohm (from qrc_tech_file)
+Site size           : 6.40 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       qrc_tech_file
+------------------------------------------------
+ME1_C           H         0.00        0.000268  
+ME2_C           V         1.00        0.000282  
+ME3_C           H         1.00        0.000282  
+ME4_C           V         1.00        0.000280  
+ME5_C           H         1.00        0.000283  
+ME6_C           V         1.00        0.000313  
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       qrc_tech_file
+-------------------------------------------------
+ME1_C           H         0.00         0.387903  
+ME2_C           V         1.00         0.279525  
+ME3_C           H         1.00         0.279525  
+ME4_C           V         1.00         0.279525  
+ME5_C           H         1.00         0.279525  
+ME6_C           V         1.00         0.019311  
+
+                                        Area     
+  Layer                               / Length        Data source:
+Name        Direction Utilization     (micron)        lef_library
+-------------------------------------------------
+ME1             H         0.00         0.240000  
+ME2             V         1.00         0.280000  
+ME3             H         1.00         0.280000  
+ME4             V         1.00         0.280000  
+ME5             H         1.00         0.280000  
+ME6             V         1.00         1.200000  
+
+Info    : Deleting sequential instances not driving any primary outputs. [GLO-32]
+        : Deleting 2 sequential instances. 
+Following instances are deleted as they do not drive any primary output:
+'u_mtm_Alu_core/frame_buff_reg[8]', 'u_mtm_Alu_core/frame_buff_reg[9]'.
+        : Optimizations such as constant propagation or redundancy removal could change the connections so an instance does not drive any primary outputs anymore. To see the list of deleted sequential, set the 'information_level' attribute to 2 or above. If the message is truncated set the message attribute 'truncate' to false to see the complete list.
+Info    : Pre-processed datapath logic. [DPOPT-6]
+        : No pre-processing optimizations applied to datapath logic in 'mtm_Alu'.
+Info    : Optimizing datapath logic. [DPOPT-1]
+        : Optimizing datapath logic in 'mtm_Alu'.
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region'
+      Timing csa_tree...
+      Timing add_unsigned...
+      Timing add_unsigned_carry...
+      Timing increment_unsigned_213...
+      Timing add_unsigned_248...
+      Timing csa_tree_250...
+      Timing equal_adder...
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 4 for module 'CDN_DP_region'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(0), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_410'
+      Timing decrement_unsigned_539...
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 4 for module 'CDN_DP_region_410'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(0), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_409'
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 4 for module 'CDN_DP_region_409'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(0), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info    : Done optimizing datapath logic. [DPOPT-2]
+        : Done optimizing datapath logic in 'mtm_Alu'.
+      Removing temporary intermediate hierarchies under mtm_Alu
+              Optimizing muxes in design 'mtm_Alu_core'.
+              Optimizing muxes in design 'mtm_Alu_serializer'.
+              Optimizing muxes in design 'mtm_Alu_deserializer'.
+Mapper: Libraries have:
+	domain WC_tc: 31 combo usable cells and 4 sequential usable cells
+      Mapping 'mtm_Alu'...
+        Preparing the circuit
+          Pruning unused logic
+Multi-threaded constant propagation [1|0] ...
+          Analyzing hierarchical boundaries
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) mtm_Alu...
+          Done structuring (delay-based) mtm_Alu
+          Structuring (delay-based) logic partition in mtm_Alu_deserializer...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mtm_Alu_deserializer
+        Mapping logic partition in mtm_Alu_deserializer...
+          Structuring (delay-based) logic partition in mtm_Alu_core...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mtm_Alu_core
+        Mapping logic partition in mtm_Alu_core...
+          Structuring (delay-based) sub_unsigned_388...
+          Done structuring (delay-based) sub_unsigned_388
+        Mapping component sub_unsigned_388...
+          Structuring (delay-based) add_unsigned_394...
+            Starting partial collapsing (xors only) add_unsigned_394
+            Finished partial collapsing.
+          Done structuring (delay-based) add_unsigned_394
+        Mapping component add_unsigned_394...
+          Structuring (delay-based) cb_oseq_617...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_oseq_617
+        Mapping component cb_oseq_617...
+          Structuring (delay-based) logic partition in mtm_Alu_deserializer...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) logic partition in mtm_Alu_deserializer
+        Mapping logic partition in mtm_Alu_deserializer...
+          Structuring (delay-based) cb_seq...
+            Starting partial collapsing (xors only) cb_seq
+            Finished partial collapsing.
+            Starting xor partial collapsing cb_seq
+            Finished xor partial collapsing.
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_seq
+        Mapping component cb_seq...
+          Structuring (delay-based) cb_seq_616...
+            Starting redundancy-removal...
+            Finished redundancy-removal...
+          Done structuring (delay-based) cb_seq_616
+        Mapping component cb_seq_616...
+ 
+Global mapping target info
+==========================
+Cost Group 'clk' target slack:   286 ps
+Target path end-point (Pin: u_mtm_Alu_deserializer/bit_counter_reg[3]/d)
+
+           Pin                      Type         Fanout Load Arrival   
+                                   (Domain)             (fF)   (ps)    
+-----------------------------------------------------------------------
+(clock clk)                <<<  launch                             0 R 
+(mtmAlu.sdc_line_54_1_1)        ext delay                              
+sin                        (u)  in port               3 23.7           
+u_mtm_Alu_deserializer/sin 
+  cb_oseqi/sin 
+    g559/in_1                                                          
+    g559/z                 (u)  unmapped_or2          1  7.9           
+    g552/in_0                                                          
+    g552/z                 (u)  unmapped_nand2        1  7.9           
+    g550/in_0                                                          
+    g550/z                 (u)  unmapped_nand2       11 86.9           
+    g551/in_0                                                          
+    g551/z                 (u)  unmapped_not          5 39.5           
+  cb_oseqi/cb_seqi_g492_z 
+  cb_seqi/g492_z 
+    g656/in_1                                                          
+    g656/z                 (u)  unmapped_and2         1  7.9           
+    bit_counter_reg[3]/d   <<<  unmapped_d_flop                        
+    bit_counter_reg[3]/clk      setup                                  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                     capture                        20000 R 
+                                uncertainty                            
+-----------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Start-point  : sin
+End-point    : u_mtm_Alu_deserializer/cb_seqi/bit_counter_reg[3]/d
+Analysis View: WC_av
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 8680ps.
+ 
+          Restructuring (delay-based) logic partition in mtm_Alu_deserializer...
+          Done restructuring (delay-based) logic partition in mtm_Alu_deserializer
+        Optimizing logic partition in mtm_Alu_deserializer...
+          Restructuring (delay-based) cb_seq...
+          Done restructuring (delay-based) cb_seq
+        Optimizing component cb_seq...
+          Restructuring (delay-based) cb_seq_616...
+          Done restructuring (delay-based) cb_seq_616
+        Optimizing component cb_seq_616...
+          Restructuring (delay-based) add_unsigned_394...
+          Done restructuring (delay-based) add_unsigned_394
+        Optimizing component add_unsigned_394...
+        Early Area Reclamation for add_unsigned_394 'very_fast' (slack=3853, area=6439)...
+          Restructuring (delay-based) add_unsigned...
+          Done restructuring (delay-based) add_unsigned
+        Optimizing component add_unsigned...
+          Restructuring (delay-based) sub_unsigned_388...
+          Done restructuring (delay-based) sub_unsigned_388
+        Optimizing component sub_unsigned_388...
+        Early Area Reclamation for sub_unsigned_388 'very_fast' (slack=4016, area=6463)...
+          Restructuring (delay-based) sub_unsigned...
+          Done restructuring (delay-based) sub_unsigned
+        Optimizing component sub_unsigned...
+          Restructuring (delay-based) cb_oseq_617...
+          Done restructuring (delay-based) cb_oseq_617
+        Optimizing component cb_oseq_617...
+          Restructuring (delay-based) logic partition in mtm_Alu_core...
+          Done restructuring (delay-based) logic partition in mtm_Alu_core
+        Optimizing logic partition in mtm_Alu_core...
+          Restructuring (delay-based) logic partition in mtm_Alu_deserializer...
+          Done restructuring (delay-based) logic partition in mtm_Alu_deserializer
+        Optimizing logic partition in mtm_Alu_deserializer...
+ 
+Global mapping timing result
+============================
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+       Pin                      Type            Fanout Load Slew Delay Arrival   
+                               (Domain)                (fF) (ps)  (ps)   (ps)    
+---------------------------------------------------------------------------------
+(clock clk)             launch                                               0 R 
+u_mtm_Alu_core
+  cb_seqi
+    B_reg[1]/CLK                                               0             0 R 
+    B_reg[1]/NQ         UCL_DFF(WC_tc)               1 16.6  202  +606     606 F 
+    g26384/EIN                                                      +0     606   
+    g26384/AUS          UCL_INV2(WC_tc)              3 33.8  199  +136     741 R 
+  cb_seqi/add_260_41_B[1] 
+  g8508/EIN                                                         +0     742   
+  g8508/AUS             UCL_BUF(WC_tc)               3 31.2  185  +211     952 R 
+  sub_264_41/B[1] 
+    g968/EIN0                                                       +0     953   
+    g968/AUS            UCL_NAND2_WIDEN(WC_tc)       1 18.8  215  +149    1102 F 
+    g944/EIN0                                                       +0    1102   
+    g944/AUS            UCL_NAND2_2(WC_tc)           1 18.8  183  +138    1240 R 
+    g943/EIN1                                                       +0    1240   
+    g943/AUS            UCL_NAND2_2(WC_tc)           2 32.9  201  +135    1375 F 
+    g941/EIN1                                                       +0    1375   
+    g941/AUS            UCL_NAND2_2(WC_tc)           1 18.8  183  +120    1495 R 
+    g940/EIN1                                                       +0    1496   
+    g940/AUS            UCL_NAND2_2(WC_tc)           2 32.9  205  +135    1630 F 
+    g938/EIN1                                                       +0    1630   
+    g938/AUS            UCL_NAND2_2(WC_tc)           1 18.8  230  +121    1752 R 
+    g937/EIN1                                                       +0    1752   
+    g937/AUS            UCL_NAND2_2(WC_tc)           2 32.9  209  +143    1895 F 
+    g935/EIN1                                                       +0    1895   
+    g935/AUS            UCL_NAND2_2(WC_tc)           1 18.8  230  +122    2017 R 
+    g934/EIN1                                                       +0    2017   
+    g934/AUS            UCL_NAND2_2(WC_tc)           2 32.9  209  +143    2160 F 
+    g932/EIN1                                                       +0    2160   
+    g932/AUS            UCL_NAND2_2(WC_tc)           1 18.8  230  +122    2282 R 
+    g931/EIN1                                                       +0    2282   
+    g931/AUS            UCL_NAND2_2(WC_tc)           2 32.9  209  +143    2425 F 
+    g929/EIN1                                                       +0    2425   
+    g929/AUS            UCL_NAND2_2(WC_tc)           1 18.8  230  +122    2548 R 
+    g928/EIN1                                                       +0    2548   
+    g928/AUS            UCL_NAND2_2(WC_tc)           2 32.9  209  +143    2691 F 
+    g926/EIN1                                                       +0    2691   
+    g926/AUS            UCL_NAND2_2(WC_tc)           1 18.8  230  +122    2813 R 
+    g925/EIN1                                                       +0    2813   
+    g925/AUS            UCL_NAND2_2(WC_tc)           2 32.9  209  +143    2956 F 
+    g923/EIN1                                                       +0    2956   
+    g923/AUS            UCL_NAND2_2(WC_tc)           1 18.8  230  +122    3078 R 
+    g922/EIN1                                                       +0    3078   
+    g922/AUS            UCL_NAND2_2(WC_tc)           2 28.0  192  +133    3211 F 
+    g920/EIN1                                                       +0    3211   
+    g920/AUS            UCL_AON2B_2(WC_tc)           1 18.0  223  +235    3446 F 
+    g918/CIN                                                        +0    3446   
+    g918/COUT           UCL_FA(WC_tc)                1 18.0  284  +423    3870 F 
+    g917/CIN                                                        +0    3870   
+    g917/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    4308 F 
+    g916/CIN                                                        +0    4308   
+    g916/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    4746 F 
+    g915/CIN                                                        +0    4746   
+    g915/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    5184 F 
+    g914/CIN                                                        +0    5184   
+    g914/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    5622 F 
+    g913/CIN                                                        +0    5622   
+    g913/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    6060 F 
+    g912/CIN                                                        +0    6060   
+    g912/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    6498 F 
+    g911/CIN                                                        +0    6498   
+    g911/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    6936 F 
+    g910/CIN                                                        +0    6936   
+    g910/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    7374 F 
+    g909/CIN                                                        +0    7374   
+    g909/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    7812 F 
+    g908/CIN                                                        +0    7813   
+    g908/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    8250 F 
+    g907/CIN                                                        +0    8251   
+    g907/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    8689 F 
+    g906/CIN                                                        +0    8689   
+    g906/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    9127 F 
+    g905/CIN                                                        +0    9127   
+    g905/COUT           UCL_FA(WC_tc)                1 18.0  284  +438    9565 F 
+    g904/CIN                                                        +0    9565   
+    g904/COUT           UCL_FA(WC_tc)                1 18.0  284  +438   10003 F 
+    g903/CIN                                                        +0   10003   
+    g903/COUT           UCL_FA(WC_tc)                1 18.0  284  +438   10441 F 
+    g902/CIN                                                        +0   10441   
+    g902/COUT           UCL_FA(WC_tc)                1 18.0  284  +438   10879 F 
+    g901/CIN                                                        +0   10879   
+    g901/COUT           UCL_FA(WC_tc)                1 18.0  284  +438   11317 F 
+    g900/CIN                                                        +0   11317   
+    g900/COUT           UCL_FA(WC_tc)                1 18.0  284  +438   11755 F 
+    g899/CIN                                                        +0   11756   
+    g899/COUT           UCL_FA(WC_tc)                1 18.0  284  +438   12193 F 
+    g898/CIN                                                        +0   12194   
+    g898/COUT           UCL_FA(WC_tc)                2 27.2  365  +492   12686 F 
+    g896/EIN0                                                       +0   12686   
+    g896/AUS            UCL_XOR(WC_tc)               3 31.4  712  +513   13199 F 
+  sub_264_41/Z[31] 
+  cb_seqi/sub_264_41_Z[31] 
+    g26093/EIN0                                                     +0   13199   
+    g26093/AUS          UCL_MUX2A(WC_tc)             1 12.9  456  +319   13518 R 
+    g25934/EIN1                                                     +0   13518   
+    g25934/AUS          UCL_MUX2(WC_tc)              2 21.6  523  +351   13869 F 
+    g25812/EIN0                                                     +0   13869   
+    g25812/AUS          UCL_AOI21(WC_tc)             1 12.2  561  +367   14236 R 
+    g25761/EIN2                                                     +0   14236   
+    g25761/AUS          UCL_OAI21(WC_tc)             3 41.2  809  +463   14700 F 
+    g25079/EIN0                                                     +0   14700   
+    g25079/AUS          UCL_XOR(WC_tc)               1 18.5  514  +466   15165 F 
+    g25073/EIN0                                                     +0   15166   
+    g25073/AUS          UCL_XOR(WC_tc)               1 18.5  510  +432   15598 F 
+    g25069/EIN0                                                     +0   15598   
+    g25069/AUS          UCL_XOR(WC_tc)               1 18.5  510  +432   16030 F 
+    g25064/EIN0                                                     +0   16030   
+    g25064/AUS          UCL_XOR(WC_tc)               2 32.6  729  +540   16571 F 
+    g25058/EIN0                                                     +0   16571   
+    g25058/AUS          UCL_XOR(WC_tc)               1 18.5  519  +457   17028 F 
+    g25049/EIN0                                                     +0   17028   
+    g25049/AUS          UCL_XOR(WC_tc)               1 18.5  509  +433   17461 F 
+    g25043/EIN0                                                     +0   17462   
+    g25043/AUS          UCL_XOR(WC_tc)               1 13.0  428  +389   17850 F 
+    g25023/EIN0                                                     +0   17850   
+    g25023/AUS          UCL_AOI21(WC_tc)             1 13.1  564  +364   18214 R 
+    g25019/EIN0                                                     +0   18214   
+    g25019/AUS          UCL_NOR2(WC_tc)              1 13.2  298  +223   18438 F 
+    CTL_reg[0]/D   <<<  UCL_DFF(WC_tc)                              +0   18438   
+    CTL_reg[0]/CLK      setup                                  0   +92   18529 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)             capture                                          20000 R 
+                        uncertainty                               -300   19700 R 
+---------------------------------------------------------------------------------
+Cost Group   : 'clk' (path_group 'clk')
+Timing slack :    1171ps 
+Start-point  : u_mtm_Alu_core/cb_seqi/B_reg[1]/CLK
+End-point    : u_mtm_Alu_core/cb_seqi/CTL_reg[0]/D
+Analysis View: WC_av
+
+ 
+ 
+Global mapping status
+=====================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+-------------------------------------------------------------------------------
+ global_map                97438        0 
+
+    Cost Group            Target    Slack    Diff.  Constr.
+-----------------------------------------------------------
+           clk               286     1171             20000 
+
+
+Scan mapping status report
+==========================
+    Scan mapping: converting flip-flops that pass TDRC.
+    Scan mapping: bypassed.  You have to either 1) set attribute 'dft_scan_map_mode' to 'tdrc_pass' and run 'check_dft_rules' or 2) set attribute 'dft_scan_map_mode' to 'force_all'.
+
+    Scan mapping bypassed because no TDRC data is available: either command 'check_dft_rules' has not been run or TDRC data has been subsequently invalidated.
+        Computing net loads.
+UM: Capturing floorplan image ...
+     flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:            14             15                                      syn_map
+@file(synth_mtmAlu.tcl) 124: 	syn_opt
+Info    : Incrementally optimizing. [SYNTH-7]
+        : Incrementally optimizing design 'mtm_Alu' using 'express' effort.
+ 
+
+
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_delay                97417        0         0         0        7       16
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+
+ 
+
+
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_delay                97417        0         0         0        7       16
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+         crr_200         0  (        0 /        0 )  0.00
+        crr_glob         0  (        0 /        0 )  0.00
+         crr_300         0  (        0 /        0 )  0.00
+        crr_glob         0  (        0 /        0 )  0.00
+         crr_400         0  (        0 /        0 )  0.00
+        crr_glob         0  (        0 /        0 )  0.00
+         crr_111         0  (        0 /        0 )  0.00
+        crr_glob         0  (        0 /        0 )  0.00
+         crr_210         0  (        0 /        0 )  0.00
+        crr_glob         0  (        0 /        0 )  0.00
+         crr_110         0  (        0 /        0 )  0.00
+        crr_glob         0  (        0 /        0 )  0.00
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       crit_dnsz         0  (        0 /        0 )  0.00
+             dup         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+        setup_dn         0  (        0 /        0 )  0.00
+         buf2inv         0  (        0 /        0 )  0.00
+             exp         0  (        0 /        0 )  0.00
+       gate_deco         0  (        0 /        0 )  0.00
+       gcomp_tim         0  (        0 /        0 )  0.00
+  inv_pair_2_buf         0  (        0 /        0 )  0.00
+ 
+
+
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_delay                97417        0         0         0        7       16
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+
+Info    : Done incrementally optimizing. [SYNTH-8]
+        : Done incrementally optimizing design 'mtm_Alu' using 'express' effort.
+@file(synth_mtmAlu.tcl) 132:  report qor > qor_syn_opt.rpt
+@file(synth_mtmAlu.tcl) 133:  report timing > timing_syn_opt.rpt
+@file(synth_mtmAlu.tcl) 134:  report gates > gates_syn_opt.rpt
+@file(synth_mtmAlu.tcl) 135:  report summary > summary_syn_opt.rpt
+@file(synth_mtmAlu.tcl) 140: write_design -innovus -basename /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu
+Exporting design data for 'mtm_Alu' to /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu...
+Info    : Generating design database. [PHYS-90]
+        : Writing netlist: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.v
+        : The database contains all the files required to restore the design in the specified application.
+Info    : Generating design database. [PHYS-90]
+        : Writing Metrics file: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.metrics.json
+Info    : Generating design database. [PHYS-90]
+        : Writing write_script: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.g
+Info    : Generating design database. [PHYS-90]
+        : Writing multi-mode multi-corner file: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.mmmc.tcl
+Finished SDC export (command execution time mm:ss (real) = 00:00).
+Info: file /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS//mtm_Alu.standard_cm.sdc has been written
+File /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS//mtm_Alu.mmmc.tcl has been written.
+Warning : Expected data not found. [PHYS-61]
+        : No power domain bounding box information found.
+        : The inclusion of this data is not required, however it is highly recommended in order to achieve the best result. Rerun the command after supplying the data.
+No loop breaker instances found (cdn_loop_breaker).
+Info    : Generating design database. [PHYS-90]
+        : Writing Innovus mode: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.mode
+Info    : Generating design database. [PHYS-90]
+        : Writing INIT setup file for Genus: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.genus_init.tcl
+Info    : Generating design database. [PHYS-90]
+        : Writing INIT setup file for Innovus: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.invs_init.tcl
+Info    : Generating design database. [PHYS-90]
+        : Writing Innovus setup file: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.invs_setup.tcl
+Info    : Generating design database. [PHYS-90]
+        : Writing Genus(TM) Synthesis Solution setup file: /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.genus_setup.tcl
+** To load the database source /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.invs_setup.tcl in an Innovus session.
+** To load the database source /home/student/pziebinski/projekt/PPCU_ALU/synth/RESULTS/mtm_Alu.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'mtm_Alu' (command execution time mm:ss cpu = 00:00, real = 00:02).
+.
+#@ End verbose source tcl/synth_mtmAlu.tcl
+Normal exit.
