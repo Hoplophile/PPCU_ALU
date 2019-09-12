@@ -1,0 +1,5 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(12Sep2019:09:16:32):( xrun -F mtm_Alu_post.f +access+r +neg_check -maxdelays +sdf_file+/home/student/pziebinski/projekt/PPCU_ALU/run_post/mtm_Alu.sdf.gz.X +xmsdf_cmd_file+/home/student/pziebinski/projekt/PPCU_ALU/run_post/mtm_Alu.sdfcmd -ncinitialize rand_2state:56 ../pr/RESULTS_PR/mtm_Alu.noPower.v.gz -tcl -input tcl/dumptcf.tcl )

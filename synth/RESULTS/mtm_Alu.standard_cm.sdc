@@ -1,6 +1,6 @@
 # ####################################################################
 
-#  Created by Genus(TM) Synthesis Solution 17.13-s033_1 on Sat Sep 07 20:45:26 CEST 2019
+#  Created by Genus(TM) Synthesis Solution 17.13-s033_1 on Thu Sep 12 09:08:18 CEST 2019
 
 # ####################################################################
 
@@ -12,12 +12,12 @@ set_units -time 1000.0ps
 # Set the current design
 current_design mtm_Alu
 
-create_clock -name "clk" -add -period 20.0 -waveform {0.0 10.0} [get_ports clk]
+create_clock -name "clk" -add -period 100.0 -waveform {0.0 50.0} [get_ports clk]
 set_load -pin_load 0.1 [get_ports sout]
 set_clock_gating_check -setup 0.0 
-set_input_delay -clock [get_clocks clk] -add_delay 10.0 [get_ports rst_n]
-set_input_delay -clock [get_clocks clk] -add_delay 10.0 [get_ports sin]
-set_output_delay -clock [get_clocks clk] -add_delay 10.0 [get_ports sout]
+set_input_delay -clock [get_clocks clk] -add_delay 50.0 [get_ports rst_n]
+set_input_delay -clock [get_clocks clk] -add_delay 50.0 [get_ports sin]
+set_output_delay -clock [get_clocks clk] -add_delay 50.0 [get_ports sout]
 set_max_fanout 1.000 [get_ports clk]
 set_max_fanout 1.000 [get_ports rst_n]
 set_max_fanout 1.000 [get_ports sin]

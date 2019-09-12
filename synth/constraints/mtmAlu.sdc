@@ -21,7 +21,7 @@ set_load_unit -picofarads
 # start with the frequency of 50 MHz
 
 # TODO: create_clock 
-	create_clock -name "clk" -period 20 clk
+	create_clock -name "clk" -period 100 clk
 
 # Set clock uncertainty to 0.3 for setup analysis
 #     and to 0.1 for hold analysis for the clock
@@ -51,7 +51,7 @@ set_load_unit -picofarads
 # (rememeber to specify the clock)
 
 # TODO set_input_delay
-	set_input_delay -clock clk 10 [all_inputs -no_clocks]
+	set_input_delay -clock clk 50 [all_inputs -no_clocks]
 
 # Limit number of loads for all inputs to one
 
@@ -66,7 +66,7 @@ set_load_unit -picofarads
 # Set the output load to 0.1 pF for all outputs
 
 # TODO: set_output_delay 
-	set_output_delay -clock clk 10 [all_outputs]
+	set_output_delay -clock clk 50 [all_outputs]
 # TODO: set_load 
 	set_load 0.1 [all_outputs]
 

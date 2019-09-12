@@ -1,0 +1,95 @@
+*----------------------------------------------------------------------------------------
+*	Innovus 17.13-s098_1 (64bit) 02/08/2018 11:26 (Linux 2.6.18-194.el5)
+*	
+*
+* 	Date & Time:	2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT)
+*
+*----------------------------------------------------------------------------------------
+*
+*	Design: mtm_Alu
+*
+*	Liberty Libraries used: 
+*
+*	Power Domain used: 
+*		Rail:       vddb 	Voltage:        1.9 
+*		Rail:       vddd 	Voltage:        1.9 
+*
+*       Power View : BC_av
+*
+*       User-Defined Activity : N.A.
+*
+*	Switching Activity File used: 
+*	        ../run_post/RESULTS/mtm_Alu.tcf
+*                    Design annotation coverage: 2018/2018 = 100% 
+*
+*       Hierarchical Global Activity: N.A.
+*
+*       Global Activity: N.A.
+*
+*       Sequential Element Activity: N.A.
+*
+*       Primary Input Activity: N.A.
+*
+*       Default icg ratio: N.A.
+*
+*       Global Comb ClockGate Ratio: N.A.
+*
+*	Power Units = 1mW
+*
+*	Time Units = 1e-09 secs 
+*
+*       report_power -output REPORTS -report_prefix pwr -format simple
+*
+-----------------------------------------------------------------------------------------
+
+
+Total Power 
+-----------------------------------------------------------------------------------------
+Total Internal Power:        3.64403438 	   54.4944%
+Total Switching Power:       1.82167404 	   27.2421%
+Total Leakage Power:         1.22128178 	   18.2635%
+Total Power:                 6.68699015 
+-----------------------------------------------------------------------------------------
+
+
+Group                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+Sequential                     0.0006694   1.956e-07      0.2159      0.2166       3.239 
+Macro                                  0           0    1.98e-10    1.98e-10   2.961e-09 
+IO                                     0           0           0           0           0 
+Combinational                  3.416e-07   2.379e-07      0.9969      0.9969       14.91 
+Clock (Combinational)              3.643       1.822    0.008474       5.474       81.85 
+Clock (Sequential)                     0           0           0           0           0 
+-----------------------------------------------------------------------------------------
+Total                              3.644       1.822       1.221       6.687         100 
+-----------------------------------------------------------------------------------------
+
+
+Rail                  Voltage   Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+vddb                      1.9      1.822      0.9108      0.6106       3.343          50 
+vddd                      1.9      1.822      0.9108      0.6106       3.343          50 
+
+
+Clock                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+clk                                3.643       1.822    0.008474       5.474       81.85 
+-----------------------------------------------------------------------------------------
+Total (excluding duplicates)       3.643       1.822    0.008474       5.474       81.85 
+-----------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------
+*	Power Distribution Summary: 
+* 		Highest Average Power: CTS_ccl_a_BUF_clk_G0_L2_8 (UCL_BUF8_2): 	    0.6289 
+* 		Highest Leakage Power: u_mtm_Alu_core/CTS_ccl_a_BUF_clk_G0_L2_1 (UCL_BUF8_2): 	 0.0009416 
+* 		Total Cap: 	3.68037e-11 F
+* 		Total instances in design:  1901
+* 		Total instances in design with no power:     1
+*          Total instances in design with no activity:     1
+* 		Total Fillers and Decap:   198
+-----------------------------------------------------------------------------------------
+

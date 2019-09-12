@@ -1,0 +1,1393 @@
+xrun: 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+TOOL:	xrun	18.09-s011: Started on Sep 12, 2019 at 09:16:31 CEST
+xrun
+	-F mtm_Alu_post.f
+		../tb/mtm_Alu_tb.v
+		../tb/mtm_Alu_test_top.v
+		+libext+.v
+		-v /cad/dk/umc180/SUS/verilog/UCLLIB_AGH.v
+		-timescale 1ns/1ps
+	+access+r
+	+neg_check
+	-maxdelays
+	+sdf_file+/home/student/pziebinski/projekt/PPCU_ALU/run_post/mtm_Alu.sdf.gz.X
+	+xmsdf_cmd_file+/home/student/pziebinski/projekt/PPCU_ALU/run_post/mtm_Alu.sdfcmd
+	-ncinitialize rand_2state:56
+	../pr/RESULTS_PR/mtm_Alu.noPower.v.gz
+	-tcl
+	-input tcl/dumptcf.tcl
+
+   User defined plus("+") options:
+	+neg_check
+
+xrun: *W,OPDEPRREN: Command Line Option (-ncinitialize) is deprecated. Use (-xminitialize) instead.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xmvlog: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xmvlog: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xmvlog: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xmvlog: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xmvlog: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+file: ./../tb/mtm_Alu_tb.v
+			CRC3_37({C, 1'b0, flags}, CRC3);
+			      |
+xmvlog: *W,BADTIF (./../tb/mtm_Alu_tb.v,478|9): a function cannot enable a task [10.3.4(IEEE)].
+	module worklib.mtm_Alu_tb:v
+		errors: 0, warnings: 1
+file: ./../tb/mtm_Alu_test_top.v
+	module worklib.mtm_Alu_test_top:v
+		errors: 0, warnings: 0
+file: ../pr/RESULTS_PR/mtm_Alu.noPower.v.gz
+	module worklib.add_unsigned_394:v
+		errors: 0, warnings: 0
+	module worklib.sub_unsigned_388:v
+		errors: 0, warnings: 0
+	module worklib.mtm_Alu_core:v
+		errors: 0, warnings: 0
+	module worklib.mtm_Alu_deserializer:v
+		errors: 0, warnings: 0
+	module worklib.mtm_Alu_serializer:v
+		errors: 0, warnings: 0
+	module worklib.mtm_Alu:v
+		errors: 0, warnings: 0
+file: /cad/dk/umc180/SUS/verilog/UCLLIB_AGH.v
+	module UCLLIB_AGH.UCL_AND2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_AOI21:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_AOI22_2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_AON2B_2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_BUF:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_BUF4:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_BUF8_2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_CGI2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_DFF:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_FA:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_INV:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_INV2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_INV4:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_MUX2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_MUX2A:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_MUX2B:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NAND2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NAND2A:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NAND2_2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NAND2_WIDEN:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NAND3:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NOR2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NOR2_2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_NOR3:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_OAI21:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_OAI22:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_OR2:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_TIEHI:v
+		errors: 0, warnings: 0
+	module UCLLIB_AGH.UCL_XOR:v
+		errors: 0, warnings: 0
+	primitive UCLLIB_AGH.altos_dff_err:v
+		errors: 0, warnings: 0
+	primitive UCLLIB_AGH.altos_dff:v
+		errors: 0, warnings: 0
+	primitive UCLLIB_AGH.UDP_IMUX_21:v
+		errors: 0, warnings: 0
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 5
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xrun: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xmelab: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xmelab: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xmelab: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xmelab: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xmelab: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+		Caching library 'UCLLIB_AGH' ....... Done
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		mtm_Alu_test_top
+	Annotating SDF timing data:
+		Compiled SDF file:     /home/student/pziebinski/projekt/PPCU_ALU/run_post/mtm_Alu.sdf.gz.X
+		Log file:              mtm_Alu_sdf.log
+		Backannotation scope:  mtm_Alu_test_top.DUT
+		Configuration file:    
+		MTM control:           TOOL_CONTROL
+		Scale factors:         
+		Scale type:            
+	Annotation completed successfully...
+	SDF statistics: No. of Pathdelays = 4234  Annotated = 100.00% -- No. of Tchecks = 1076  Annotated = 100.00% 
+				        Total 	   Annotated	  Percentage
+		 Path Delays	        4234	        4234	      100.00
+		      $width	         538	         538	      100.00
+		  $setuphold	         538	         538	      100.00
+	Building instance overlay tables: ....................
+			CRC3_37({C, 1'b0, flags}, CRC3);
+			      |
+xmelab: *W,NOTVFW (../tb/mtm_Alu_tb.v,478|9): Expecting a SystemVerilog void function name. The task 'CRC3_37' should be made a void function, not a task. Currently this is treated as a warning for backward compatibility but be aware that calling a task in this context is illegal SystemVerilog and can give unpredictable results. Further, this condition may be treated as an error in the future.
+ Done
+	Generating native compiled code:
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xmvlog_cg: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xmvlog_cg: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xmvlog_cg: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xmvlog_cg: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xmvlog_cg: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+		worklib.mtm_Alu_tb:v <0x5e34db7c>
+			streams:  20, words: 276013
+		worklib.mtm_Alu_core:v <0x79b4621b>
+			streams:   0, words:     0
+		UCLLIB_AGH.UCL_DFF:v <0x0b52afe4>
+			streams:   0, words:     0
+		UCLLIB_AGH.UCL_DFF:v <0x077f9c5a>
+			streams:   0, words:     0
+		UCLLIB_AGH.UCL_DFF:v <0x485e11b4>
+			streams:   0, words:     0
+		UCLLIB_AGH.UCL_DFF:v <0x3462e51d>
+			streams:   0, words:     0
+		UCLLIB_AGH.UCL_DFF:v <0x3a426510>
+			streams:   0, words:     0
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                    Instances  Unique
+		Modules:                 1614      37
+		UDPs:                     596       3
+		Primitives:              4081       5
+		Timing outputs:          1935      11
+		Registers:                308      42
+		Scalar wires:            2209       -
+		Initial blocks:             5       5
+		Cont. assignments:          0       2
+		Timing checks:           1614     287
+		Interconnect:            4052      50
+		Delayed tcheck signals:   538     291
+		Simulation timescale:     1ps
+	Writing initial simulation snapshot: worklib.mtm_Alu_test_top:v
+DEFINE basic $CDSHOME/tools/dfII/etc/cdslib/basic
+|
+xmsim: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,1): cds.lib Invalid environment variable ''.
+DEFINE analogLib $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+|
+xmsim: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,2): cds.lib Invalid environment variable ''.
+DEFINE ahdlLib $CDSHOME/tools/dfII/samples/artist/ahdlLib
+|
+xmsim: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,3): cds.lib Invalid environment variable ''.
+DEFINE bmslib $CDSHOME/tools/dfII/samples/artist/bmslib
+|
+xmsim: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,4): cds.lib Invalid environment variable ''.
+DEFINE sample $CDSHOME/tools/dfII/samples/cdslib/sample
+|
+xmsim: *W,DLCVAR (/cad/dk/PDK_CRN45GS_DGO/cds.lib,5): cds.lib Invalid environment variable ''.
+Loading snapshot worklib.mtm_Alu_test_top:v .................... Done
+xcelium> source /cad/XCELIUM1809/tools/xcelium/files/xmsimrc
+xcelium> # dump net switching activity into a file
+xcelium> # (to be used for dynamic power estimation)
+xcelium> dumptcf \
+>   -scope DUT \
+>   -overwrite \
+>   -dumpwireasnet \
+>   -output RESULTS/mtm_Alu.tcf
+xcelium> 
+xcelium> # run simulation
+xcelium> run
+
+Starting 250 random 'ADD' params test
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+
+Starting 250 random 'SUB' params test
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+
+Starting 250 random 'AND' params test
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+
+Starting 250 random 'OR' params test
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+
+Starting max/min data test
+Addition
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+Subtraction
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+OR
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+AND
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+	PASS: Received DATA as expected
+
+Starting wrong CRC test
+	PASS: Received CTL as expected
+
+Starting wrong number of packets test
+Too many frames
+	PASS: Received CTL as expected
+Too few frames
+	PASS: Received CTL as expected
+
+Starting wrong operation test
+	PASS: Received CTL as expected
+Simulation complete via $finish(1) at time 32806918 NS + 2
+../tb/mtm_Alu_tb.v:76 		$finish;
+xcelium> 
+xcelium> # finish
+xcelium> exit
+TOOL:	xrun	18.09-s011: Exiting on Sep 12, 2019 at 09:16:47 CEST  (total: 00:00:16)

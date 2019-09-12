@@ -1,0 +1,1744 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2017 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v17.13-s098_1, built Thu Feb 8 11:26:22 PST 2018
+Options:	-stylus -abort_on_error -no_gui -files ./tcl/run_power.tcl -log innovus_mtm -overwrite 
+Date:		Sat Sep  7 22:23:50 2019
+Host:		cadence212 (x86_64 w/Linux 2.6.32-754.6.3.el6.x86_64) (16cores*64cpus*Intel(R) Xeon(R) Gold 6130 CPU @ 2.10GHz 22528KB)
+OS:		CentOS release 6.10 (Final)
+
+License:
+		invs	Innovus Implementation System	17.1	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+
+***************************************************************************************
+INFO:    You have enabled the Common UI that has been internally qualified at Cadence but
+         has only limited customer testing. You are encouraged to work with Cadence directly
+         to qualify your usage and make sure it meets your needs before deploying it widely.
+***************************************************************************************
+
+Create and set the environment variable TMPDIR to /tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB.
+
+Change the soft stacksize limit to 0.2%RAM (515 mbytes). Set global soft_stack_size_limit to change the value.
+
+**INFO:  MMMC transition support version v31-84 
+
+#@ Processing -files option
+@innovus 1> source ./tcl/run_power.tcl
+#@ Begin verbose source ./tcl/run_power.tcl
+@file(run_power.tcl) 1: set reportDir REPORTS
+@file(run_power.tcl) 5: if {[expr ! [file exists $reportDir]]} { file mkdir $reportDir }
+@file(run_power.tcl) 9: read_db ../pr/RESULTS_PR/mtm_Alu_innovus
+#% Begin read_db load design ... (date=09/07 22:24:01, mem=403.1M)
+Set Default Net Delay as 1000 ps.
+Set Default Net Load as 0.5 pF. 
+Set Using Default Delay Limit as 1000.
+Applying the recommended capacitance filtering threshold values for 180nm process node: total_c_th=5, relative_c_th=0.03 and coupling_c_th=3.
+	These values will be used by all post-route extraction engines, including tQuantus, IQRC and Quantus QRC extraction.
+	For postRoute extract_rc_effort_level low extraction, the coupling_c_th value will be used only when the extract_rc_cap_filter_mode parameter of the set_db command is set to relative_and_coupling or relative_or_coupling. Default value of extract_rc_cap_filter_mode parameter in postRoute extraction extract_rc_effort_level low is relative_only.
+	The accuracy mode for postRoute extract_rc_effort_level low extraction will be set to 'standard'.
+	Default value for EffortLevel(extract_rc_effort_level option of the set_db) in postRoute extraction mode is 'low'.
+Updating process node dependent CCOpt properties for the 180nm process node.
+**WARN: (IMPEXT-1081):	set_db extract_rc_effort_level signoff is ignored for preRoute extraction. This setting is only applicable for postRoute extraction.
+Type 'man IMPEXT-1081' for more detail.
+Set Default Input Pin Transition as 0.1 ps.
+**WARN: (GLOBAL-100):	Global 'timing_enable_default_delay_arc' has become obsolete. It will be removed in the next release.
+**ERROR: (TCLCMD-1047):	Constraint mode 'standard_cm' is not active.
+Reading WC_libs timing library '/cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib' ...
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'AUS' of cell 'UCL_AND2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN0' of cell 'UCL_AND2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN1' of cell 'UCL_AND2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'AUS' of cell 'UCL_AOI21' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN0' of cell 'UCL_AOI21' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN1' of cell 'UCL_AOI21' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN2' of cell 'UCL_AOI21' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'AUS' of cell 'UCL_AOI22' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN0' of cell 'UCL_AOI22' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN1' of cell 'UCL_AOI22' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN2' of cell 'UCL_AOI22' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN3' of cell 'UCL_AOI22' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'AUS' of cell 'UCL_AOI22_2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN0' of cell 'UCL_AOI22_2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN1' of cell 'UCL_AOI22_2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN2' of cell 'UCL_AOI22_2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN3' of cell 'UCL_AOI22_2' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'AUS' of cell 'UCL_AON2B' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN0' of cell 'UCL_AON2B' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+**WARN: (TECHLIB-436):	Attribute 'fanout_load' on 'input/inout' pin 'EIN1' of cell 'UCL_AON2B' is not defined in the library. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+Message <TECHLIB-436> has exceeded the message display limit of '20'. Use 'set_message -no_limit -id list_of_msgIDs' to reset the message limit.
+**WARN: (TECHLIB-302):	No function defined for cell 'UCL_FILL'. The cell will only be used for analysis. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ss.lib)
+Read 49 cells in library 'SUSLIB_UCL_SS' 
+Reading BC_libs timing library '/cad/dk/umc180/SUS/SUSLIB_UCL_ff.lib' ...
+**WARN: (TECHLIB-302):	No function defined for cell 'UCL_FILL'. The cell will only be used for analysis. (File /cad/dk/umc180/SUS/SUSLIB_UCL_ff.lib)
+Read 49 cells in library 'SUSLIB_UCL_FF' 
+WC_rc BC_rc
+
+Loading LEF file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef ...
+WARNING (LEFPARS-2007): NAMESCASESENSITIVE statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later. See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 3.
+WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 6.
+**WARN: (IMPLF-117):	Layer ME6 wireExtension is less than 1/2 layerWidth, 1/2 layerWidth is used.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 397.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 406.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 415.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 424.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 433.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 442.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 451.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 460.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 469.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 478.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 487.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 496.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 587.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 596.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 685.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 694.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 783.
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF file with version 5.6 or later See file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef at line 792.
+
+Loading LEF file /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL.lef ...
+**WARN: (IMPLF-108):	There is no overlap layer defined in any LEF file
+so you are unable to create rectilinear partition in a hierarchical flow.
+Set DBUPerIGU to M2 pitch 640.
+**WARN: (IMPLF-200):	Pin 'A' in macro 'UCL_ANT' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+Type 'man IMPLF-200' for more detail.
+
+viaInitial starts at Sat Sep  7 22:24:02 2019
+viaInitial ends at Sat Sep  7 22:24:02 2019
+Loading view definition file from ../pr/RESULTS_PR/mtm_Alu_innovus/viewDefinition.tcl
+% Begin Load netlist data ... (date=09/07 22:24:02, mem=500.3M)
+*** Begin netlist parsing (mem=543.6M) ***
+**WARN: (IMPVL-159):	Pin 'gndb' of cell 'UCL_LAT' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndd' of cell 'UCL_LAT' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddb' of cell 'UCL_LAT' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddd' of cell 'UCL_LAT' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddb' of cell 'UCL_TIELOW' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddd' of cell 'UCL_TIELOW' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndb' of cell 'UCL_TIELOW' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndd' of cell 'UCL_TIELOW' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddb' of cell 'UCL_TIEHI' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddd' of cell 'UCL_TIEHI' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndb' of cell 'UCL_TIEHI' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndd' of cell 'UCL_TIEHI' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddb' of cell 'UCL_FILL' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddd' of cell 'UCL_FILL' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndb' of cell 'UCL_FILL' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndd' of cell 'UCL_FILL' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddb' of cell 'UCL_CAP9' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'vddd' of cell 'UCL_CAP9' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndb' of cell 'UCL_CAP9' is defined in LEF but not in the timing library.
+**WARN: (IMPVL-159):	Pin 'gndd' of cell 'UCL_CAP9' is defined in LEF but not in the timing library.
+**WARN: (EMS-27):	Message (IMPVL-159) has exceeded the current message display limit of 20.
+To increase the message display limit, refer to the product command reference manual.
+Created 49 new cells from 2 timing libraries.
+Reading netlist ...
+Backslashed names will retain backslash and a trailing blank character.
+Reading verilogBinary netlist '/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu.v.bin'
+Reading binary database version 1
+
+*** Memory Usage v#1 (Current mem = 550.629M, initial mem = 250.371M) ***
+*** End netlist parsing (cpu=0:00:00.0, real=0:00:00.0, mem=550.6M) ***
+% End Load netlist data ... (date=09/07 22:24:02, total cpu=0:00:00.0, real=0:00:00.0, peak res=500.3M, current mem=428.7M)
+Top level cell is mtm_Alu.
+Hooked 98 DB cells to tlib cells.
+Starting recursive module instantiation check.
+No recursion found.
+Building hierarchical netlist for Cell mtm_Alu ...
+*** Netlist is unique.
+Set DBUPerIGU to techSite CoreSite width 720.
+** info: there are 113 modules.
+** info: there are 1703 stdCell insts.
+
+*** Memory Usage v#1 (Current mem = 579.051M, initial mem = 250.371M) ***
+*info: set bottom ioPad orient R0
+Adjust ME6 preferred direction offset from 0.46 to 0.
+Generated pitch 1.92 in ME6 is different from 2.2 defined in technology file in preferred direction.
+Generated pitch 0.64 in ME5 is different from 0.56 defined in technology file in preferred direction.
+Generated pitch 0.64 in ME3 is different from 0.56 defined in technology file in preferred direction.
+Set Default Net Delay as 1000 ps.
+Set Default Net Load as 0.5 pF. 
+Set Default Input Pin Transition as 0.1 ps.
+Loading preference file ../pr/RESULTS_PR/mtm_Alu_innovus/gui.pref.tcl ...
+Applying the recommended capacitance filtering threshold values for 180nm process node: total_c_th=5, relative_c_th=0.03 and coupling_c_th=3.
+	These values will be used by all post-route extraction engines, including tQuantus, IQRC and Quantus QRC extraction.
+	For postRoute extract_rc_effort_level low extraction, the coupling_c_th value will be used only when the extract_rc_cap_filter_mode parameter of the set_db command is set to relative_and_coupling or relative_or_coupling. Default value of extract_rc_cap_filter_mode parameter in postRoute extraction extract_rc_effort_level low is relative_only.
+	The accuracy mode for postRoute extract_rc_effort_level low extraction will be set to 'standard'.
+	Default value for EffortLevel(extract_rc_effort_level option of the set_db) in postRoute extraction mode is 'low'.
+Updating process node dependent CCOpt properties for the 180nm process node.
+#WARNING (NRIF-80) When route_design_detail_post_route_swap_via is set to 'multiCut', the post route via swapping step will be performed on all nets, and to double cut vias. To swap to DFM vias based on via weight, please set the option to 'true'.
+**WARN: (IMPTCM-77):	Option "-drouteStartIteration" for command setNanoRouteMode is obsolete and will be removed in a future release. The obsolete option still works in this release but to avoid this warning and to ensure compatibility with future releases, remove the obsolete option from your script.
+**WARN: (IMPSP-5237):	Only Tie-Hi cell is specified in this string 'UCL_TIEHI', please check if Tie-Lo cell is needed.
+BC_av WC_av
+BC_av WC_av
+Extraction setup Started 
+Initializing multi-corner RC extraction with 2 active RC Corners ...
+Captable file(s) not specified in multi-corner setup. PreRoute extraction will use technology file. For postRoute extraction, default value for effort level would be 'medium' and effort level 'low' would not be allowed.
+Reading layer map file '/cad/dk/umc180/SUS/lefdef.layermap'.
+Loading preRoute extracted patterns from file '../pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu.techData.gz' ...
+Completed (cpu: 0:00:00.7 real: 0:00:01.0)
+Set Shrink Factor to 1.00000
+Summary of Active RC-Corners : 
+ 
+ Analysis View: WC_av
+    RC-Corner Name        : WC_rc
+    RC-Corner Index       : 0
+    RC-Corner Temperature : 80 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 
+    RC-Corner Technology file: '/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/mmmc/qrcTechFile'
+ 
+ Analysis View: BC_av
+    RC-Corner Name        : BC_rc
+    RC-Corner Index       : 1
+    RC-Corner Temperature : 0 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 
+    RC-Corner Technology file: '/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/mmmc/qrcTechFile'
+Default value for postRoute extraction mode's extract_rc_effort_level (extract_rc_effort_level option of set_db) changed to 'medium'.
+*Info: initialize multi-corner CTS.
+Reading timing constraints file '/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/mmmc/modes/standard_cm/standard_cm.sdc' ...
+Current (total cpu=0:00:14.2, real=0:00:14.0, peak res=620.5M, current mem=620.5M)
+mtm_Alu
+mtm_Alu
+INFO (CTE): Constraints read successfully.
+Ending "Constraint file reading stats" (total cpu=0:00:00.0, real=0:00:00.0, peak res=636.0M, current mem=636.0M)
+Current (total cpu=0:00:14.3, real=0:00:14.0, peak res=636.0M, current mem=636.0M)
+Total number of combinational cells: 41
+Total number of sequential cells: 7
+Total number of tristate cells: 1
+Total number of level shifter cells: 0
+Total number of power gating cells: 0
+Total number of isolation cells: 0
+Total number of power switch cells: 0
+Total number of pulse generator cells: 0
+Total number of always on buffers: 0
+Total number of retention cells: 0
+List of usable buffers: UCL_BUF UCL_BUF4 UCL_BUF8_2
+Total number of usable buffers: 3
+List of unusable buffers:
+Total number of unusable buffers: 0
+List of usable inverters: UCL_INV UCL_INV2 UCL_INV4 UCL_INV_LP2 UCL_INV_LP
+Total number of usable inverters: 5
+List of unusable inverters:
+Total number of unusable inverters: 0
+List of identified usable delay cells: UCL_BUF16 UCL_BUF8
+Total number of identified usable delay cells: 2
+List of identified unusable delay cells:
+Total number of identified unusable delay cells: 0
+BC_av WC_av
+BC_av WC_av
+BC_av WC_av
+% Begin Load floorplan data ... (date=09/07 22:24:04, mem=637.2M)
+Reading floorplan file - ../pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu.fp.gz (mem = 786.6M).
+% Begin Load floorplan data ... (date=09/07 22:24:04, mem=637.3M)
+*info: reset 2027 existing net BottomPreferredLayer and AvoidDetour
+Deleting old partition specification.
+Set FPlanBox to (0 0 355200 346240)
+Adjust ME6 preferred direction offset from 0.46 to 0.
+Generated pitch 1.92 in ME6 is different from 2.2 defined in technology file in preferred direction.
+Generated pitch 0.64 in ME5 is different from 0.56 defined in technology file in preferred direction.
+Generated pitch 0.64 in ME3 is different from 0.56 defined in technology file in preferred direction.
+ ... processed partition successfully.
+Reading binary special route file ../pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu.fp.spr.gz (Created by Innovus v17.13-s098_1 on Sat Sep  7 22:20:17 2019, version: 1)
+There are 10 nets with weight being set
+There are 10 nets with bottomPreferredRoutingLayer being set
+There are 10 nets with avoidDetour being set
+Extracting standard cell pins and blockage ...... 
+**WARN: (IMPTR-2108):	For layer M6, the gaps of 184 out of 184 tracks are narrower than 2.200um (space 1.000 + width 1.200).
+Type 'man IMPTR-2108' for more detail.
+ As a result, your trialRoute congestion could be incorrect.
+Pin and blockage extraction finished
+Delete all existing relative floorplan constraints.
+% End Load floorplan data ... (date=09/07 22:24:04, total cpu=0:00:00.0, real=0:00:00.0, peak res=638.8M, current mem=638.8M)
+% End Load floorplan data ... (date=09/07 22:24:04, total cpu=0:00:00.1, real=0:00:00.0, peak res=638.8M, current mem=638.8M)
+% Begin Load SymbolTable ... (date=09/07 22:24:04, mem=638.8M)
+% End Load SymbolTable ... (date=09/07 22:24:04, total cpu=0:00:00.0, real=0:00:00.0, peak res=639.6M, current mem=639.6M)
+% Begin Load placement data ... (date=09/07 22:24:04, mem=639.2M)
+Reading placement file - ../pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu.place.gz.
+*** Checked 4 GNC rules.
+*** applyConnectGlobalNets disabled.
+** Reading stdCellPlacement_binary (Created by Innovus v17.13-s098_1 on Sat Sep  7 22:20:17 2019, version# 1) ...
+*** Checked 4 GNC rules.
+*** applyConnectGlobalNets disabled.
+*** Completed restorePlace (cpu=0:00:00.0 real=0:00:00.0 mem=786.6M) ***
+Total net length = 6.313e+04 (3.103e+04 3.211e+04) (ext = 7.693e+02)
+% End Load placement data ... (date=09/07 22:24:04, total cpu=0:00:00.0, real=0:00:00.0, peak res=639.8M, current mem=639.8M)
+*** Checked 4 GNC rules.
+*** Applying global-net connections...
+*** Applied 4 GNC rules (cpu = 0:00:00.0)
+% Begin Load routing data ... (date=09/07 22:24:04, mem=639.8M)
+Reading routing file - ../pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu.route.gz.
+Reading Innovus routing data (Created by Innovus v17.13-s098_1 on Sat Sep  7 22:20:17 2019 Format: 16.2) ...
+Suppress "**WARN ..." messages.
+Un-suppress "**WARN ..." messages.
+*** Total 2022 nets are successfully restored.
+*** Completed restoreRoute (cpu=0:00:00.1 real=0:00:00.0 mem=786.6M) ***
+% End Load routing data ... (date=09/07 22:24:04, total cpu=0:00:00.1, real=0:00:00.0, peak res=647.2M, current mem=647.2M)
+Reading property file ../pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu.prop
+*** Completed restoreProperty (cpu=0:00:00.0 real=0:00:00.0 mem=786.6M) ***
+BC_av WC_av
+BC_av WC_av
+% Begin Load power constraints ... (date=09/07 22:24:04, mem=649.0M)
+source ../pr/RESULTS_PR/mtm_Alu_innovus/mtm_Alu_power_constraints.tcl
+'set_default_switching_activity' finished successfully.
+% End Load power constraints ... (date=09/07 22:24:04, total cpu=0:00:00.0, real=0:00:00.0, peak res=649.2M, current mem=649.2M)
+Start generating vias ...
+#Skip building auto via since it is not turned on.
+Via generation completed.
+**WARN: (IMPSP-5237):	Only Tie-Hi cell is specified in this string 'UCL_TIEHI', please check if Tie-Lo cell is needed.
+#WARNING (NRIF-80) When route_design_detail_post_route_swap_via is set to 'multiCut', the post route via swapping step will be performed on all nets, and to double cut vias. To swap to DFM vias based on via weight, please set the option to 'true'.
+Initializing multi-corner resistance tables ...
+% Begin load AAE data ... (date=09/07 22:24:04, mem=649.4M)
+AAE DB initialization (MEM=812.703 CPU=0:00:00.1 REAL=0:00:01.0) 
+% End load AAE data ... (date=09/07 22:24:05, total cpu=0:00:00.1, real=0:00:01.0, peak res=649.4M, current mem=649.4M)
+Restoring CCOpt config...
+  Extracting original clock gating for clk...
+    clock_tree clk contains 269 sinks and 0 clock gates.
+    Extraction for clk complete.
+  Extracting original clock gating for clk done.
+Restoring CCOpt config done.
+Total number of combinational cells: 41
+Total number of sequential cells: 7
+Total number of tristate cells: 1
+Total number of level shifter cells: 0
+Total number of power gating cells: 0
+Total number of isolation cells: 0
+Total number of power switch cells: 0
+Total number of pulse generator cells: 0
+Total number of always on buffers: 0
+Total number of retention cells: 0
+List of usable buffers: UCL_BUF UCL_BUF4 UCL_BUF8_2
+Total number of usable buffers: 3
+List of unusable buffers:
+Total number of unusable buffers: 0
+List of usable inverters: UCL_INV UCL_INV2 UCL_INV4
+Total number of usable inverters: 3
+List of unusable inverters: UCL_INV_LP2 UCL_INV_LP
+Total number of unusable inverters: 2
+List of identified usable delay cells: UCL_BUF8
+Total number of identified usable delay cells: 1
+List of identified unusable delay cells: UCL_BUF16
+Total number of identified unusable delay cells: 1
+#% End read_db load design ... (date=09/07 22:24:05, total cpu=0:00:03.9, real=0:00:04.0, peak res=652.6M, current mem=652.6M)
+
+*** Summary of all messages that are not suppressed in this session:
+Severity  ID               Count  Summary                                  
+WARNING   IMPLF-200            1  Pin '%s' in macro '%s' has no ANTENNAGAT...
+WARNING   IMPLF-108            1  There is no overlap layer defined in any...
+WARNING   IMPLF-117            1  Layer %s wireExtension is less than 1/2 ...
+WARNING   IMPEXT-1081          1  set_db extract_rc_effort_level %s is ign...
+WARNING   IMPVL-159          196  Pin '%s' of cell '%s' is defined in LEF ...
+WARNING   IMPSP-5237           2  Only %s cell is specified in this string...
+WARNING   IMPTR-2108           1  For layer M%d, the gaps of %d out of %d ...
+WARNING   IMPTCM-77            1  Option "%s" for command %s is obsolete a...
+WARNING   GLOBAL-100           1  Global '%s' has become obsolete. It will...
+ERROR     TCLCMD-1047          1  Constraint mode '%s' is not active.      
+WARNING   TECHLIB-302          2  No function defined for cell '%s'. The c...
+WARNING   TECHLIB-436         20  Attribute '%s' on '%s' pin '%s' of cell ...
+*** Message Summary: 227 warning(s), 1 error(s)
+
+@file(run_power.tcl) 12: set_analysis_view -dynamic BC_av -leakage BC_av -setup WC_av -hold BC_av
+BC_av WC_av
+BC_av WC_av
+Extraction setup Started 
+Initializing multi-corner RC extraction with 2 active RC Corners ...
+Captable file(s) not specified in multi-corner setup. PreRoute extraction will use technology file. For postRoute extraction, default value for effort level would be 'medium' and effort level 'low' would not be allowed.
+Completed (cpu: 0:00:00.0 real: 0:00:00.0)
+Set Shrink Factor to 1.00000
+Summary of Active RC-Corners : 
+ 
+ Analysis View: WC_av
+    RC-Corner Name        : WC_rc
+    RC-Corner Index       : 0
+    RC-Corner Temperature : 80 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 
+    RC-Corner Technology file: '/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/mmmc/qrcTechFile'
+ 
+ Analysis View: BC_av
+    RC-Corner Name        : BC_rc
+    RC-Corner Index       : 1
+    RC-Corner Temperature : 0 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 
+    RC-Corner Technology file: '/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/mmmc/qrcTechFile'
+Reading timing constraints file '/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/.mmmcEzn5uM/modes/standard_cm/standard_cm.sdc' ...
+Current (total cpu=0:00:15.2, real=0:00:15.0, peak res=680.8M, current mem=680.8M)
+mtm_Alu
+mtm_Alu
+INFO (CTE): Constraints read successfully.
+Ending "Constraint file reading stats" (total cpu=0:00:00.0, real=0:00:00.0, peak res=680.8M, current mem=650.5M)
+Current (total cpu=0:00:15.3, real=0:00:15.0, peak res=680.8M, current mem=650.5M)
+Total number of combinational cells: 41
+Total number of sequential cells: 7
+Total number of tristate cells: 1
+Total number of level shifter cells: 0
+Total number of power gating cells: 0
+Total number of isolation cells: 0
+Total number of power switch cells: 0
+Total number of pulse generator cells: 0
+Total number of always on buffers: 0
+Total number of retention cells: 0
+List of usable buffers: UCL_BUF UCL_BUF4 UCL_BUF8_2
+Total number of usable buffers: 3
+List of unusable buffers:
+Total number of unusable buffers: 0
+List of usable inverters: UCL_INV UCL_INV2 UCL_INV4
+Total number of usable inverters: 3
+List of unusable inverters: UCL_INV_LP2 UCL_INV_LP
+Total number of unusable inverters: 2
+List of identified usable delay cells: UCL_BUF8
+Total number of identified usable delay cells: 1
+List of identified unusable delay cells: UCL_BUF16
+Total number of identified unusable delay cells: 1
+BC_av WC_av
+BC_av WC_av
+BC_av WC_av
+BC_av WC_av
+BC_av WC_av
+@file(run_power.tcl) 16: reset_power_activity
+@file(run_power.tcl) 20: read_activity_file ../run_post/RESULTS/mtm_Alu.tcf \
+  -format TCF \
+  -scope DUT
+'read_activity_file' finished successfully.
+@file(run_power.tcl) 25: report_unannotated_nets \
+  -type tcf
+BC_av WC_av
+
+Power Net Detected:
+    Voltage	    Name
+    0.00V	    gndb
+    0.00V	    gndd
+    1.90V	    vddb
+    1.90V	    vddd
+AAE DB initialization (MEM=818.754 CPU=0:00:00.1 REAL=0:00:00.0) 
+Starting SI iteration 1 using Infinite Timing Windows
+#################################################################################
+# Design Stage: PostRoute
+# Design Name: mtm_Alu
+# Design Mode: 180nm
+# Analysis Mode: MMMC OCV 
+# Parasitics Mode: No SPEF/RCDB
+# Signoff Settings: SI On 
+#################################################################################
+Extraction called for design 'mtm_Alu' of instances=5019 and nets=2027 using extraction engine 'postRoute' at effort level 'signoff' .
+Writing DEF file '/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.def.gz', current time is Sat Sep  7 22:24:06 2019 ...
+unitPerMicron=1000, dbgMicronPerDBU=0.001000, unitPerDBU=1.000000
+DEF file '/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.def.gz' is written, current time is Sat Sep  7 22:24:06 2019 ...
+
+
+  Cadence Quantus QRC Extraction - 64-bit Parasitic Extractor - Version
+17.1.2-s041 Wed Aug 23 16:57:50 PDT 2017
+-------------------------------------------------------------------------------------------------------------------
+                                    Copyright 2017 Cadence Design Systems,
+Inc.
+
+
+
+INFO (EXTQRCXLOG-103) : The Command File Options for the current Quantus run are as follows:
+
+extract \
+	 -selection "all" \
+	 -type "rc_coupled"
+extraction_setup \
+	 -promote_pin_pad "LOGICAL" \
+	 -technology_layer_map \
+		"ME1  ME1_C  " \
+		"VI1  VIA1  " \
+		"ME2  ME2_C  " \
+		"VI2  VIA2  " \
+		"ME3  ME3_C  " \
+		"VI3  VIA3  " \
+		"ME4  ME4_C  " \
+		"VI4  VIA4  " \
+		"ME5  ME5_C  " \
+		"VI5  VIA5  " \
+		"ME6  ME6_C  "
+filter_coupling_cap \
+	 -cap_filtering_mode "absolute_and_relative" \
+	 -coupling_cap_threshold_absolute 3.0 \
+	 -coupling_cap_threshold_relative 0.03 \
+	 -total_cap_threshold 5.0
+input_db -type def \
+	 -lef_file_list_file "/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.leflist"
+log_file \
+	 -dump_options true \
+	 -file_name "qrc_280615_20190907_22:24:05.log"
+output_db -type spef \
+	 -short_incomplete_net_pins true \
+	 -subtype "STANDARD"
+output_setup \
+	 -compressed true \
+	 -directory_name "/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8" \
+	 -file_name "mtm_Alu" \
+	 -temporary_directory_name "/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8"
+process_technology \
+	 -technology_corner \
+		"WC_rc" \
+		"WC_rc" \
+	 -technology_library_file "/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/_qrc_techlib.defs" \
+	 -technology_name "_qrc_tech_" \
+	 -temperature \
+		80 \
+		0
+
+
+
+
+INFO (EXTGRMP-102) : Starting at 2019-Sep-07 22:24:06 (2019-Sep-07 20:24:06 GMT) on host
+cadence212 with pid 281771.
+Running binary as: 
+ /cad/EXT171/tools/extraction/bin/64bit/qrc -cmd
+/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.cmd
+/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.def.gz
+ 
+
+WARNING (EXTGRMP-414) : No GDSII/OASIS file is specified. Setting graybox type as LEF_OBSTRUCTION.
+
+INFO (EXTGRMP-142) : Command line arguments:
+"-cmd"
+"/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.cmd"
+"/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.def.gz"
+
+INFO (EXTGRMP-143) : Option copy_port_to_obs = "true"
+
+INFO (EXTGRMP-143) : Option log_file = "qrc_280615_20190907_22:24:05.log"
+
+INFO (EXTGRMP-143) : Option max_error_messages = "100"
+
+INFO (EXTGRMP-143) : Option message_detail_level = "10"
+
+INFO (EXTGRMP-143) : Option tech_file = ""
+
+INFO (EXTGRMP-143) : Option library_name = ""
+
+INFO (EXTGRMP-143) : Option oa_default_rule_name = ""
+
+INFO (EXTGRMP-143) : Option gray_data = "obs"
+
+INFO (EXTGRMP-143) : Option use_macro_density = "false"
+
+INFO (EXTGRMP-143) : Option comp_prealloc = "0"
+
+INFO (EXTGRMP-143) : Option net_prealloc = "0"
+
+INFO (EXTGRMP-143) : Option output_directory_name =
+"/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8"
+
+INFO (EXTGRMP-143) : Option output_coordinate_units = "micron"
+
+INFO (EXTGRMP-143) : Option user_comment = ""
+
+INFO (EXTGRMP-143) : Option output_cache_directory_name =
+"/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/.qrctemp"
+
+INFO (EXTGRMP-143) : Option keep_temporary_files = "false"
+
+INFO (EXTGRMP-143) : Option output_density_tiles = "false"
+
+INFO (EXTGRMP-143) : Option output_file_name = "mtm_Alu"
+
+INFO (EXTGRMP-143) : Option spef_define_file = ""
+
+INFO (EXTGRMP-143) : Option reduce_output = "false"
+
+INFO (EXTGRMP-143) : Option debug_log = "false"
+
+INFO (EXTGRMP-143) : Option spef_output = "generic"
+
+INFO (EXTGRMP-143) : Option dspf_output = "none"
+
+INFO (EXTGRMP-143) : Option output_sstorm_db_name = ""
+
+INFO (EXTGRMP-143) : Option netlist_output = "none"
+
+INFO (EXTGRMP-143) : Option net_cc_output = "false"
+
+INFO (EXTGRMP-143) : Option rcdb_output = "false"
+
+INFO (EXTGRMP-143) : Option hierarchy_char = "/"
+
+INFO (EXTGRMP-143) : Option bus_chars = "[]"
+
+INFO (EXTGRMP-143) : Option pin_char = ":"
+
+INFO (EXTGRMP-143) : Option output_incomplete_nets_type = "no_pin one_pin disconnected_pin
+multiple_partitions floating_resistors"
+
+INFO (EXTGRMP-143) : Option truncate_regular_wires = "false"
+
+INFO (EXTGRMP-143) : Option layout_scale = "1.0"
+
+INFO (EXTGRMP-143) : Option output_file_max_size = "9223372036854775807"
+
+INFO (EXTGRMP-143) : Option dump_options = "true"
+
+INFO (EXTGRMP-143) : Option short_incomplete_net_pins = "true"
+
+INFO (EXTGRMP-143) : Option promote_incomplete_net_pins = "true"
+
+INFO (EXTGRMP-143) : Option output_incomplete_nets = "true"
+
+INFO (EXTGRMP-143) : Option output_unrouted_nets = "false"
+
+INFO (EXTGRMP-143) : Option treat_special_chars = "true"
+
+INFO (EXTGRMP-143) : Option lumped_cc_threshold = "0.0"
+
+INFO (EXTGRMP-143) : Option reduction_max_frequency = "1.0e+08"
+
+INFO (EXTGRMP-143) : Option compressed_output = "true"
+
+INFO (EXTGRMP-143) : Option max_resistor_length = "100.0"
+
+INFO (EXTGRMP-143) : Option promote_feedthru_ports = "none"
+
+INFO (EXTGRMP-143) : Option promote_instance_ports = "none"
+
+INFO (EXTGRMP-143) : Option output_promoted_feedthrus = "false"
+
+INFO (EXTGRMP-143) : Option output_unconnected_pins = "false"
+
+INFO (EXTGRMP-143) : Option remove_floating_metals = "false"
+
+INFO (EXTGRMP-143) : Option promote_pin_pad = "logical"
+
+INFO (EXTGRMP-143) : Option eco_compatible_mode = "false"
+
+INFO (EXTGRMP-143) : Option cap_mode_2915 = "true"
+
+INFO (EXTGRMP-143) : Option quickcap_file = "false"
+
+INFO (EXTGRMP-143) : Option ict_file = "process.ict"
+
+INFO (EXTGRMP-143) : Option quickcap_netfile = "qapi.net"
+
+INFO (EXTGRMP-143) : Option lefcap_output = "false"
+
+INFO (EXTGRMP-143) : Option lefcap_scale = "1.25"
+
+INFO (EXTGRMP-143) : Option lefres_output = "false"
+
+INFO (EXTGRMP-143) : Option kfactor_file = ""
+
+INFO (EXTGRMP-143) : Option total_c_threshold = "5"
+
+INFO (EXTGRMP-143) : Option relative_c_threshold = "0.03"
+
+INFO (EXTGRMP-143) : Option output_cap_filtering_mode = "relative_and_coupling"
+
+INFO (EXTGRMP-143) : Option cap_mode = "default"
+
+INFO (EXTGRMP-143) : Option parallel_options = ""
+
+INFO (EXTGRMP-143) : Option load_optimized_views = "true"
+
+INFO (EXTGRMP-143) : Option enable_metal_fill_effects = "true"
+
+INFO (EXTGRMP-143) : Option advanced_metal_fill = "false"
+
+INFO (EXTGRMP-143) : Option metal_fill_type = "floating"
+
+INFO (EXTGRMP-143) : Option vmf_metal_scheme_file = ""
+
+INFO (EXTGRMP-143) : Option vmf_rule_file = ""
+
+INFO (EXTGRMP-143) : Option metal_fill_gds_file = ""
+
+INFO (EXTGRMP-143) : Option density_check_method = "none"
+
+INFO (EXTGRMP-143) : Option temperature = "80"
+
+INFO (EXTGRMP-143) : Option promote_gray_data_pins = "false"
+
+INFO (EXTGRMP-143) : Option use_layer_bias_in_cmd_and_process_bias_in_tech = "false"
+
+INFO (EXTGRMP-143) : Option map_eeq_to_master_in_output = "false"
+
+INFO (EXTGRMP-143) : Option match_res_cap_in_output = "false"
+
+INFO (EXTGRMP-143) : Option merge_tile_boundary_data = "true"
+
+INFO (EXTGRMP-143) : Option coupling_c_threshold = "3"
+
+INFO (EXTGRMP-143) : Option use_icecaps_models_only = "false"
+
+INFO (EXTGRMP-143) : Option use_name_map_in_spef = "true"
+
+INFO (EXTGRMP-143) : Option name_map_start_index_in_spef = "0"
+
+INFO (EXTGRMP-143) : Option timeout = "604800"
+
+INFO (EXTGRMP-143) : Option num_of_trials = "0"
+
+INFO (EXTGRMP-143) : Option separate_cc_prefix_in_dspf = "false"
+
+INFO (EXTGRMP-143) : Option output_oa = "false"
+
+INFO (EXTGRMP-143) : Option oa_analysis_point = "default"
+
+INFO (EXTGRMP-143) : Option enable_sensitivity_extraction = "false"
+
+INFO (EXTGRMP-143) : Option report_details = "false"
+
+INFO (EXTGRMP-143) : Option report_shorts = "false"
+
+INFO (EXTGRMP-143) : Option metal_fill_gds_offset_X = "0.0"
+
+INFO (EXTGRMP-143) : Option metal_fill_gds_offset_Y = "0.0"
+
+INFO (EXTGRMP-143) : Option ignore_pushdown_blockages = "false"
+
+INFO (EXTGRMP-143) : Option compress_cache_files = "true"
+
+INFO (EXTGRMP-143) : Option strong_gray_debug = "false"
+
+INFO (EXTGRMP-143) : Option disable_instances = "true"
+
+INFO (EXTGRMP-143) : Option disable_subnodes = "true"
+
+INFO (EXTGRMP-143) : Option dump_erosion_info = ""
+
+INFO (EXTGRMP-143) : Option silicon_width_printing = "true"
+
+INFO (EXTGRMP-143) : Option unscaled_res_params_printing = "false"
+
+INFO (EXTGRMP-143) : Option enable_active_fill_via_processing = "false"
+
+INFO (EXTGRMP-143) : Option add_explicit_vias = "false"
+
+INFO (EXTGRMP-143) : Option cap_ground_net = "0"
+
+INFO (EXTGRMP-143) : Option output_res_temp_coeff = "false"
+
+INFO (EXTGRMP-143) : Option write_coupled_decoupled_files = "false"
+
+INFO (EXTGRMP-143) : Option capacitance_coupling = "default"
+
+INFO (EXTGRMP-143) : Option top_cell = ""
+
+INFO (EXTGRMP-143) : Option input_directory_name = ""
+
+INFO (EXTGRMP-143) : Option binary_input = "false"
+
+INFO (EXTGRMP-143) : Option binary_output = "false"
+
+INFO (EXTGRMP-143) : Option enable_ieee_sensitivity = "false"
+
+INFO (EXTGRMP-143) : Option bump_map_file = ""
+
+INFO (EXTGRMP-143) : Option enable_bump_instance = "false"
+
+INFO (EXTGRMP-143) : Option enable_tsv_instance = "false"
+
+INFO (EXTGRMP-143) : Option enable_TSV_STA_Cc_model = "false"
+
+INFO (EXTGRMP-143) : Option stitch_bump_model = "false"
+
+INFO (EXTGRMP-143) : Option stitch_tsv_model = "none"
+
+INFO (EXTGRMP-143) : Option enable_eco_mode = "false"
+
+INFO (EXTGRMP-143) : Option eco_file = ""
+
+INFO (EXTGRMP-143) : Option override_eco_reference = "true"
+
+INFO (EXTGRMP-143) : Option analysis_mode = "timing"
+
+INFO (EXTGRMP-143) : Option use_lef_for_hierarchical_def = "false"
+
+INFO (EXTGRMP-143) : Option include_gate_forming_layers = "false"
+
+INFO (EXTGRMP-143) : Option strict_error_reporting = "false"
+
+INFO (EXTGRMP-143) : Option LEF files =
+"/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL.lef"
+
+INFO (EXTGRMP-143) : Option GDSII files = ""
+
+INFO (EXTGRMP-143) : Option GDSII/RDL files = ""
+
+INFO (EXTGRMP-143) : Option SPICE files = ""
+
+INFO (EXTGRMP-143) : Option DENSITY cells = ""
+
+INFO (EXTGRMP-143) : Option stitch bump cells = ""
+
+INFO (EXTGRMP-143) : Option ignored macros = ""
+
+INFO (EXTGRMP-143) : Option black macros = ""
+
+INFO (EXTGRMP-156) : Layer mappings from the command file.
+ME1 --> ME1_C
+VI1 --> VIA1
+ME2 --> ME2_C
+VI2 --> VIA2
+ME3 --> ME3_C
+VI3 --> VIA3
+ME4 --> ME4_C
+VI4 --> VIA4
+ME5 --> ME5_C
+VI5 --> VIA5
+ME6 --> ME6_C
+
+INFO (EXTGRMP-276) : Gds/Oasis Layer Map settings were not specified.
+
+INFO (EXTGRMP-548) : Gds/Oasis Fill layer Map settings were not specified.
+
+INFO (EXTGRMP-550) : Gds/Oasis Active Fill layer Map settings were not specified.
+
+INFO (EXTGRMP-562) : HPB layer settings were not specified.
+
+INFO (EXTGRMP-623) : Background density layer mappings were not specified.
+
+INFO (EXTGRMP-144) : There were no layer bias commands for R values.
+
+INFO (EXTGRMP-147) : Layer bias settings for C values were not specified.
+
+INFO (EXTGRMP-149) : Lefcap area scale settings were not specified.
+
+INFO (EXTGRMP-153) : Lefcap edge scale settings were not specified.
+
+INFO (EXTGRMP-151) : Parameter name settings were not specified.
+
+INFO (EXTGRMP-260) : Layer cluster settings were not specified.
+
+INFO (EXTHPY-232) : Preprocessing stage started at Sat Sep  7 22:24:06 2019.
+
+INFO (EXTGRMP-336) : Reading technology data and cell definitions from LEF file:
+
+INFO (EXTGRMP-338) : /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2007): NAMESCASESENSITIVE statement is obsolete in version
+5.6 and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later. See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 3.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 397.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 406.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 415.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 424.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 433.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 442.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 451.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 460.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 469.
+
+WARNING (EXTGRMP-327) : The LEF parser reported the following warning :
+WARNING (LEFPARS-2019): TOPOFSTACKONLY statement is obsolete in version 5.6
+and later.
+The LEF parser will ignore this statement.
+To avoid this warning in the future, remove this statement from the LEF
+file with version 5.6 or later See file
+/home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL_tech.lef
+at line 478.
+
+INFO (EXTGRMP-338) : /home/student/pziebinski/projekt/PPCU_ALU/pr/RESULTS_PR/mtm_Alu_innovus/libs/lef/SUSLIB_UCL.lef
+
+WARNING (EXTGRMP-184) : Gray-box mode -type lef_obstruction was selected for extraction, but 20
+macro definitions did not include any obstruction data. The first 10 were:
+ UCL_ANT UCL_CAP5 UCL_CAP6 UCL_CAP7 UCL_CAP8 UCL_CAP9 UCL_FILL UCL_INV
+UCL_INV2 UCL_INV_LP
+Check the library inputs and log files from library setup to determine
+whether there is a problem.
+
+INFO (EXTGRMP-205) : Reading DEF file:
+/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.def.gz
+
+INFO (EXTGRMP-195) : Line 153: reading VIAS section. Expecting 89.
+
+INFO (EXTGRMP-195) : Line 153: reading VIAS section. Expecting 89.
+
+INFO (EXTGRMP-195) : Line 668: reading COMPONENTS section. Expecting 5019.
+
+INFO (EXTGRMP-195) : Line 668: reading COMPONENTS section. Expecting 5019.
+
+INFO (EXTGRMP-195) : Line 10709: reading PINS section. Expecting 20.
+
+INFO (EXTGRMP-195) : Line 10709: reading PINS section. Expecting 20.
+
+INFO (EXTGRMP-195) : Line 10780: reading SPECIALNETS section. Expecting 4.
+
+INFO (EXTGRMP-195) : Line 10780: reading SPECIALNETS section. Expecting 4.
+
+INFO (EXTGRMP-195) : Line 12599: reading NETS section. Expecting 2018.
+
+INFO (EXTGRMP-195) : Line 12599: reading NETS section. Expecting 2018.
+
+INFO (EXTGRMP-248) : METAL FILL data is not available in DEF file.
+
+INFO (EXTGRMP-207) : Reading DEF file completed successfully.
+
+INFO (EXTGRMP-292) : Checking Command/Tech/License Files. 
+
+INFO (EXTGRMP-281) : Manufacturing Data Information :- 
+  DEF/GDS/OASIS/LEF file 
+    does NOT contain MetalFill data. 
+  Techfile  
+    does NOT contain WEE data.     
+    does NOT contain Erosion data t=f( density ) 
+    does NOT contain R(w) data.    
+    does NOT contain R(w, s) data.  
+    does NOT contain TC(w) data.    
+    does     contain T/B enlargement data. 
+    does     contain Floating Metal Fill models. 
+    does NOT contain WBE data. 
+
+INFO (EXTGRMP-613) : Turbo Reduction is now turned on by default.
+
+INFO (EXTGRMP-294) : RCs effects computed for this session include :- 
+ MetalFill        : OFF 
+ WEE Effects      : n/a 
+ Erosion Effects  : n/a t=f(density) 
+ T/B Enlargements : ON 
+ R(w) Effects     : n/a 
+ R(w,s) Effects   : n/a 
+ TC(w) Effects    : n/a 
+Some effects indicate n/a because of non-availability of relevant input
+data (or) requested to be off.
+
+INFO (EXTGRMP-3841) : Preparations for RC computations started. 
+
+INFO (EXTGRMP-368) : The extracted temperature is 80, the reference temperature is 25 for the
+process WC_rc!
+
+INFO (EXTGRMP-368) : The extracted temperature is 0, the reference temperature is 25 for the
+process WC_rc!
+
+INFO (EXTGRMP-3842) : Preparations for RC computations completed successfully. 
+
+INFO (EXTGRMP-211) : Reading geometric data from DEF file:
+/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/qrc.def.gz
+
+INFO (EXTSNZ-133) : 1%
+
+INFO (EXTSNZ-133) : 2%
+
+INFO (EXTSNZ-133) : 3%
+
+INFO (EXTSNZ-133) : 4%
+
+INFO (EXTSNZ-133) : 5%
+
+INFO (EXTSNZ-133) : 6%
+
+INFO (EXTSNZ-133) : 7%
+
+INFO (EXTSNZ-133) : 8%
+
+INFO (EXTSNZ-133) : 9%
+
+INFO (EXTSNZ-133) : 10%
+
+INFO (EXTSNZ-133) : 11%
+
+INFO (EXTSNZ-133) : 12%
+
+INFO (EXTSNZ-133) : 13%
+
+INFO (EXTSNZ-133) : 14%
+
+INFO (EXTSNZ-133) : 15%
+
+INFO (EXTSNZ-133) : 16%
+
+INFO (EXTSNZ-133) : 17%
+
+INFO (EXTSNZ-133) : 18%
+
+INFO (EXTSNZ-133) : 19%
+
+INFO (EXTSNZ-133) : 20%
+
+INFO (EXTSNZ-133) : 21%
+
+INFO (EXTSNZ-133) : 22%
+
+INFO (EXTSNZ-133) : 23%
+
+INFO (EXTSNZ-133) : 24%
+
+INFO (EXTSNZ-133) : 25%
+
+INFO (EXTSNZ-133) : 26%
+
+INFO (EXTSNZ-133) : 27%
+
+INFO (EXTSNZ-133) : 28%
+
+INFO (EXTSNZ-133) : 29%
+
+INFO (EXTSNZ-133) : 30%
+
+INFO (EXTSNZ-133) : 31%
+
+INFO (EXTSNZ-133) : 32%
+
+INFO (EXTSNZ-133) : 33%
+
+INFO (EXTSNZ-133) : 34%
+
+INFO (EXTSNZ-133) : 35%
+
+INFO (EXTSNZ-133) : 36%
+
+INFO (EXTSNZ-133) : 37%
+
+INFO (EXTSNZ-133) : 38%
+
+INFO (EXTSNZ-133) : 39%
+
+INFO (EXTSNZ-133) : 40%
+
+INFO (EXTSNZ-133) : 41%
+
+INFO (EXTSNZ-133) : 42%
+
+INFO (EXTSNZ-133) : 43%
+
+INFO (EXTSNZ-133) : 44%
+
+INFO (EXTSNZ-133) : 45%
+
+INFO (EXTSNZ-133) : 46%
+
+INFO (EXTSNZ-133) : 47%
+
+INFO (EXTSNZ-133) : 48%
+
+INFO (EXTSNZ-133) : 49%
+
+INFO (EXTSNZ-133) : 50%
+
+INFO (EXTSNZ-133) : 51%
+
+INFO (EXTSNZ-133) : 52%
+
+INFO (EXTSNZ-133) : 53%
+
+INFO (EXTSNZ-133) : 54%
+
+INFO (EXTSNZ-133) : 55%
+
+INFO (EXTSNZ-133) : 56%
+
+INFO (EXTSNZ-133) : 57%
+
+INFO (EXTSNZ-133) : 58%
+
+INFO (EXTSNZ-133) : 59%
+
+INFO (EXTSNZ-133) : 60%
+
+INFO (EXTSNZ-133) : 61%
+
+INFO (EXTSNZ-133) : 62%
+
+INFO (EXTSNZ-133) : 63%
+
+INFO (EXTSNZ-133) : 64%
+
+INFO (EXTSNZ-133) : 65%
+
+INFO (EXTSNZ-133) : 66%
+
+INFO (EXTSNZ-133) : 67%
+
+INFO (EXTSNZ-133) : 68%
+
+INFO (EXTSNZ-133) : 69%
+
+INFO (EXTSNZ-133) : 70%
+
+INFO (EXTSNZ-133) : 71%
+
+INFO (EXTSNZ-133) : 72%
+
+INFO (EXTSNZ-133) : 73%
+
+INFO (EXTSNZ-133) : 74%
+
+INFO (EXTSNZ-133) : 75%
+
+INFO (EXTSNZ-133) : 76%
+
+INFO (EXTSNZ-133) : 77%
+
+INFO (EXTSNZ-133) : 78%
+
+INFO (EXTSNZ-133) : 79%
+
+INFO (EXTSNZ-133) : 80%
+
+INFO (EXTSNZ-133) : 81%
+
+INFO (EXTSNZ-133) : 82%
+
+INFO (EXTSNZ-133) : 83%
+
+INFO (EXTSNZ-133) : 84%
+
+INFO (EXTSNZ-133) : 85%
+
+INFO (EXTSNZ-133) : 86%
+
+INFO (EXTSNZ-133) : 87%
+
+INFO (EXTSNZ-133) : 88%
+
+INFO (EXTSNZ-133) : 89%
+
+INFO (EXTSNZ-133) : 90%
+
+INFO (EXTSNZ-133) : 91%
+
+INFO (EXTSNZ-133) : 92%
+
+INFO (EXTSNZ-133) : 93%
+
+INFO (EXTSNZ-133) : 94%
+
+INFO (EXTSNZ-133) : 95%
+
+INFO (EXTSNZ-133) : 96%
+
+INFO (EXTSNZ-133) : 97%
+
+INFO (EXTSNZ-133) : 98%
+
+INFO (EXTSNZ-133) : 99%
+
+INFO (EXTGRMP-213) : Reading geometric data from DEF completed successfully.
+
+INFO (EXTSNZ-133) : 1%
+
+INFO (EXTSNZ-133) : 2%
+
+INFO (EXTSNZ-133) : 3%
+
+INFO (EXTSNZ-133) : 4%
+
+INFO (EXTSNZ-133) : 5%
+
+INFO (EXTSNZ-133) : 6%
+
+INFO (EXTSNZ-133) : 7%
+
+INFO (EXTSNZ-133) : 8%
+
+INFO (EXTSNZ-133) : 9%
+
+INFO (EXTSNZ-133) : 10%
+
+INFO (EXTSNZ-133) : 11%
+
+INFO (EXTSNZ-133) : 12%
+
+INFO (EXTSNZ-133) : 13%
+
+INFO (EXTSNZ-133) : 14%
+
+INFO (EXTSNZ-133) : 15%
+
+INFO (EXTSNZ-133) : 16%
+
+INFO (EXTSNZ-133) : 17%
+
+INFO (EXTSNZ-133) : 18%
+
+INFO (EXTSNZ-133) : 19%
+
+INFO (EXTSNZ-133) : 20%
+
+INFO (EXTSNZ-133) : 21%
+
+INFO (EXTSNZ-133) : 22%
+
+INFO (EXTSNZ-133) : 23%
+
+INFO (EXTSNZ-133) : 24%
+
+INFO (EXTSNZ-133) : 25%
+
+INFO (EXTSNZ-133) : 26%
+
+INFO (EXTSNZ-133) : 27%
+
+INFO (EXTSNZ-133) : 28%
+
+INFO (EXTSNZ-133) : 29%
+
+INFO (EXTSNZ-133) : 30%
+
+INFO (EXTSNZ-133) : 31%
+
+INFO (EXTSNZ-133) : 32%
+
+INFO (EXTSNZ-133) : 33%
+
+INFO (EXTSNZ-133) : 34%
+
+INFO (EXTSNZ-133) : 35%
+
+INFO (EXTSNZ-133) : 36%
+
+INFO (EXTSNZ-133) : 37%
+
+INFO (EXTSNZ-133) : 38%
+
+INFO (EXTSNZ-133) : 39%
+
+INFO (EXTSNZ-133) : 40%
+
+INFO (EXTSNZ-133) : 41%
+
+INFO (EXTSNZ-133) : 42%
+
+INFO (EXTSNZ-133) : 43%
+
+INFO (EXTSNZ-133) : 44%
+
+INFO (EXTSNZ-133) : 45%
+
+INFO (EXTSNZ-133) : 46%
+
+INFO (EXTSNZ-133) : 47%
+
+INFO (EXTSNZ-133) : 48%
+
+INFO (EXTSNZ-133) : 49%
+
+INFO (EXTSNZ-133) : 50%
+
+INFO (EXTSNZ-133) : 51%
+
+INFO (EXTSNZ-133) : 52%
+
+INFO (EXTSNZ-133) : 53%
+
+INFO (EXTSNZ-133) : 54%
+
+INFO (EXTSNZ-133) : 55%
+
+INFO (EXTSNZ-133) : 56%
+
+INFO (EXTSNZ-133) : 57%
+
+INFO (EXTSNZ-133) : 58%
+
+INFO (EXTSNZ-133) : 59%
+
+INFO (EXTSNZ-133) : 60%
+
+INFO (EXTSNZ-133) : 61%
+
+INFO (EXTSNZ-133) : 62%
+
+INFO (EXTSNZ-133) : 63%
+
+INFO (EXTSNZ-133) : 64%
+
+INFO (EXTSNZ-133) : 65%
+
+INFO (EXTSNZ-133) : 66%
+
+INFO (EXTSNZ-133) : 67%
+
+INFO (EXTSNZ-133) : 68%
+
+INFO (EXTSNZ-133) : 69%
+
+INFO (EXTSNZ-133) : 70%
+
+INFO (EXTSNZ-133) : 71%
+
+INFO (EXTSNZ-133) : 72%
+
+INFO (EXTSNZ-133) : 73%
+
+INFO (EXTSNZ-133) : 74%
+
+INFO (EXTSNZ-133) : 75%
+
+INFO (EXTSNZ-133) : 76%
+
+INFO (EXTSNZ-133) : 77%
+
+INFO (EXTSNZ-133) : 78%
+
+INFO (EXTSNZ-133) : 79%
+
+INFO (EXTSNZ-133) : 80%
+
+INFO (EXTSNZ-133) : 81%
+
+INFO (EXTSNZ-133) : 82%
+
+INFO (EXTSNZ-133) : 83%
+
+INFO (EXTSNZ-133) : 84%
+
+INFO (EXTSNZ-133) : 85%
+
+INFO (EXTSNZ-133) : 86%
+
+INFO (EXTSNZ-133) : 87%
+
+INFO (EXTSNZ-133) : 88%
+
+INFO (EXTSNZ-133) : 89%
+
+INFO (EXTSNZ-133) : 90%
+
+INFO (EXTSNZ-133) : 91%
+
+INFO (EXTSNZ-133) : 92%
+
+INFO (EXTSNZ-133) : 93%
+
+INFO (EXTSNZ-133) : 94%
+
+INFO (EXTSNZ-133) : 95%
+
+INFO (EXTSNZ-133) : 96%
+
+INFO (EXTSNZ-133) : 97%
+
+INFO (EXTSNZ-133) : 98%
+
+INFO (EXTSNZ-133) : 99%
+
+INFO (EXTHPY-233) : Preprocessing stage completed successfully at Sat Sep  7 22:24:17 2019.
+
+INFO (EXTHPY-173) : Capacitance extraction started at Sat Sep  7 22:24:17 2019.
+
+INFO (EXTHPY-103) : Extracting capacitance values.
+
+INFO (EXTHPY-104) :    0%
+
+INFO (EXTHPY-104) :    14%
+
+INFO (EXTHPY-104) :    29%
+
+INFO (EXTHPY-104) :    43%
+
+INFO (EXTHPY-104) :    57%
+
+INFO (EXTHPY-104) :    71%
+
+INFO (EXTHPY-104) :    86%
+
+INFO (EXTHPY-104) :    100%
+
+INFO (EXTHPY-174) : Capacitance extraction completed successfully at Sat Sep  7 22:24:29 2019.
+
+INFO (EXTHPY-175) : Output generation started at Sat Sep  7 22:24:29 2019.
+
+INFO (EXTGRMP-103) : Output Driver started at: Sat Sep  7 22:24:30 2019
+
+INFO (EXTSNZ-156) :    0%
+
+INFO (EXTSNZ-156) :    10%
+
+INFO (EXTSNZ-156) :    20%
+
+INFO (EXTSNZ-156) :    30%
+
+INFO (EXTSNZ-156) :    40%
+
+INFO (EXTSNZ-156) :    50%
+
+INFO (EXTSNZ-156) :    60%
+
+INFO (EXTSNZ-156) :    70%
+
+INFO (EXTSNZ-156) :    80%
+
+INFO (EXTSNZ-156) :    90%
+
+INFO (EXTGRMP-103) : Output Driver ended at: Sat Sep  7 22:24:31 2019
+
+WARNING (EXTGRMP-574) : There are 269 unrouted nets. 
+Please check file *.incompletenets in your output directory for details. 
+
+INFO (EXTHPY-176) : Output generation completed successfully at Sat Sep  7 22:24:34 2019.
+
+Ending at 2019-Sep-07 22:24:34 (2019-Sep-07 20:24:34 GMT).
+
+ Tool:                    Cadence Quantus QRC Extraction 64-bit
+ Version:                 17.1.2-s041 Wed Aug 23 16:57:50 PDT 2017
+ IR Build No:             041 
+ Techfile:                
+    WC_rc
+/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/_qrc_techdir/WC_rc/qrcTechFile
+; version: 8.1.3-p004
+    WC_rc
+/tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/_qrc_techdir/WC_rc/qrcTechFile
+; version: 8.1.3-p004 
+ License(s) used:         1 of Virtuoso_QRC_Extraction_XL, 1 of
+QRC_Advanced_Analysis 
+ User Name:               pziebinski
+ Host Name:               cadence212
+ Host OS Release:         Linux 2.6.32-754.6.3.el6.x86_64
+ Host OS Version:         #1 SMP Tue Oct 9 17:27:49 UTC 2018
+ Run duration:            00:00:04 CPU time, 00:00:28 clock time
+ Max (Total) memory used: 1562 MB
+ Max (CPU) memory used:   1420 MB
+ Max Temp-Directory used: 6 MB
+ Nets/hour:               1816K nets/CPU-hr, 259K nets/clock-hr
+ Design data:
+    Components:           5019
+    Phy components:       3316
+    Nets:                 2018
+    Unconnected pins:     269
+ Warning messages:        26
+ Error messages:          0
+
+Exit code 0.
+Cadence Quantus QRC Extraction completed successfully at 2019-Sep-07
+22:24:34 (2019-Sep-07 20:24:34 GMT).
+*** qrc completed. ***
+
+SPEF files for RC Corner WC_rc:
+
+SPEF files for RC Corner BC_rc:
+Start spef parsing (MEM=818.754).
+SPEF file /tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/mtm_Alu_WC_rc_80.spef.gz.
+Number of Resistors     : 25223
+Number of Ground Caps   : 19102
+Number of Coupling Caps : 8140
+
+SPEF file /tmp/innovus_temp_280615_cadence212_pziebinski_eLxyXB/tmp_qrc_E8zUn8/mtm_Alu_WC_rc_0.spef.gz.
+Number of Resistors     : 25223
+Number of Ground Caps   : 19102
+Number of Coupling Caps : 8140
+
+End spef parsing (MEM=827.758 CPU=0:00:00.4 REAL=0:00:00.0).
+AAE_INFO: 1 threads acquired from CTE.
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Start delay calculation (fullDC) (1 T). (MEM=868.359)
+AAE_INFO: 1 threads acquired from CTE.
+AAE_INFO: 1 threads acquired from CTE.
+AAE_INFO: 1 threads acquired from CTE.
+Total number of fetched objects 2018
+AAE_INFO: Total number of nets for which stage creation was skipped for all views 0
+AAE_INFO-618: Total number of nets in the design is 2027,  100.0 percent of the nets selected for SI analysis
+AAE_INFO: 1 threads acquired from CTE.
+Total number of fetched objects 2018
+AAE_INFO: Total number of nets for which stage creation was skipped for all views 0
+AAE_INFO-618: Total number of nets in the design is 2027,  99.5 percent of the nets selected for SI analysis
+End delay calculation. (MEM=1082.81 CPU=0:00:01.8 REAL=0:00:02.0)
+End delay calculation (fullDC). (MEM=985.441 CPU=0:00:02.2 REAL=0:00:02.0)
+Loading CTE timing window with TwFlowType 0...(CPU = 0:00:00.0, REAL = 0:00:00.0, MEM = 985.4M)
+Add other clocks and setupCteToAAEClockMapping during iter 1
+Loading CTE timing window is completed (CPU = 0:00:00.0, REAL = 0:00:00.0, MEM = 985.4M)
+Starting SI iteration 2
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Start delay calculation (fullDC) (1 T). (MEM=993.512)
+AAE_INFO: 1 threads acquired from CTE.
+Glitch Analysis: View WC_av -- Total Number of Nets Skipped = 0. 
+Glitch Analysis: View WC_av -- Total Number of Nets Analyzed = 0. 
+Total number of fetched objects 2018
+AAE_INFO: Total number of nets for which stage creation was skipped for all views 0
+AAE_INFO-618: Total number of nets in the design is 2027,  0.0 percent of the nets selected for SI analysis
+AAE_INFO: 1 threads acquired from CTE.
+Glitch Analysis: View BC_av -- Total Number of Nets Skipped = 0. 
+Glitch Analysis: View BC_av -- Total Number of Nets Analyzed = 2018. 
+Total number of fetched objects 2018
+AAE_INFO: Total number of nets for which stage creation was skipped for all views 0
+AAE_INFO-618: Total number of nets in the design is 2027,  0.0 percent of the nets selected for SI analysis
+End delay calculation. (MEM=1012.59 CPU=0:00:00.1 REAL=0:00:00.0)
+End delay calculation (fullDC). (MEM=1012.59 CPU=0:00:00.1 REAL=0:00:00.0)
+BC_av WC_av
+    0.00V	    gndb
+    0.00V	    gndd
+    1.90V	    vddb
+    1.90V	    vddd
+  No hierarchy separator specified - trying default '/'.
+
+Loading TCF file ../run_post/RESULTS/mtm_Alu.tcf
+
+
+  Filename (activity)                    : ../run_post/RESULTS/mtm_Alu.tcf
+  Names in file that matched to design   : 8630/11968
+  Annotation coverage for this file      : 2018/2018 = 100%
+
+  3338 nets were found in the TCF file(s) but were not in
+  the design.  These nets are not reported because
+  'set_power_analysis_mode' -report_missing_nets' is set to false
+(default).
+
+  Total annotation coverage for all files of type TCF: 2018/2018 = 100%
+
+clk(50MHz) 
+Starting Levelizing
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT)
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 10%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 20%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 30%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 40%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 50%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 60%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 70%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 80%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 90%
+
+Finished Levelizing
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT)
+
+Starting Activity Propagation
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT)
+
+Finished Activity Propagation
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT)
+
+Activity annotation summary:
+        Primary Inputs : 3/3 = 100%
+          Flop outputs : 538/538 = 100%
+  Memory/Macro outputs : 0/0 = 0%
+      Tristate outputs : 0/0 = 0%
+            Total Nets : 2018/2018 = 100%
+
+  Writing net annotation file ./annotation_tcf.log.
+@file(run_power.tcl) 28: report_unannotated_nets \
+  -type tcf \
+  -file $reportDir/tcf_unannotated_nets.rpt
+  Writing net annotation file ./REPORTS/tcf_unannotated_nets.rpt.
+@file(run_power.tcl) 36: report_power \
+  -out_dir $reportDir \
+  -report_prefix "pwr" \
+  -format simple
+BC_av WC_av
+    0.00V	    gndb
+    0.00V	    gndd
+    1.70V	    vddb
+    1.70V	    vddd
+Using Dynamic Power View BC_av
+.
+Load RC corner of view BC_av
+BC_av WC_av
+    0.00V	    gndb
+    0.00V	    gndd
+    1.90V	    vddb
+    1.90V	    vddd
+      ----------------------------------------------------------
+      # of cell(s) missing both power/leakage table: 0
+      # of cell(s) missing power table: 1
+      # of cell(s) missing leakage table: 1
+      # of MSMV cell(s) missing power_level: 0
+      ----------------------------------------------------------
+CellName                                  Missing Table(s)
+UCL_TIEHI                                 internal power, leakge power, 
+
+
+
+Starting Calculating power
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT)
+ ... Calculating switching power
+  Cannot locate supply power rail for net 'sout' of instance FE_OFC5_sout
+  Cannot locate supply power rail for net 'CTS_4' of instance
+CTS_ccl_a_BUF_clk_G0_L1_1
+  Cannot locate supply power rail for net 'CTS_3' of instance
+CTS_ccl_a_BUF_clk_G0_L2_8
+  Cannot locate supply power rail for net 'CTS_2' of instance
+CTS_ccl_a_BUF_clk_G0_L2_7
+  Cannot locate supply power rail for net 'CTS_1' of instance
+CTS_ccl_a_BUF_clk_G0_L2_6
+  only first five unconnected nets are listed...
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 10%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 20%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 30%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 40%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 50%
+ ... Calculating internal and leakage power
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 60%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 70%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 80%
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT): 90%
+
+INFO: 1 cell(s) in the netlist have missing or incomplete current
+waveforms. The current waveforms for these cells will be estimated.
+  UCL_TIEHI
+
+Finished Calculating power
+2019-Sep-07 22:24:38 (2019-Sep-07 20:24:38 GMT)
+Begin Static Power Report Generation
+*
+
+  1 instances have no static power
+** WARN:  (VOLTUS_POWR-2152): Instance u_mtm_Alu_core/LTIEHI (UCL_TIEHI) has no static power. 
+
+
+
+Total Power
+-----------------------------------------------------------------------------------------
+Total Internal Power:        3.64403438 	   54.4944%
+Total Switching Power:       1.82167404 	   27.2421%
+Total Leakage Power:         1.22128178 	   18.2635%
+Total Power:                 6.68699015
+-----------------------------------------------------------------------------------------
+Ended Static Power Report Generation: (cpu=0:00:00, real=0:00:00,
+mem(process/total)=766.39MB/766.39MB)
+
+
+Output file is REPORTS/pwr
+@file(run_power.tcl) 42: exit
+
+*** Memory Usage v#1 (Current mem = 966.289M, initial mem = 250.371M) ***
+*** Message Summary: 227 warning(s), 1 error(s)
+
+--- Ending "Innovus" (totcpu=0:00:48.2, real=0:00:48.0, mem=966.3M) ---
